@@ -1,0 +1,21 @@
+{
+  "name": "oses-nevsehir",
+  "version": "1.0.0",
+  "description": "Oses Çiğköfte Nevşehir – Yerel SEO & Google Ads Dönüşüm Sitesi",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.11.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

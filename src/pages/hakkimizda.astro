@@ -1,0 +1,428 @@
+---
+// src/pages/hakkimizda.astro
+// Hakkımızda & Sertifikalar Galerisi
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const TEL = "03842152502";
+const TEL_DISPLAY = "0384 215 2502";
+const WA_GENEL = "https://wa.me/903842152502?text=Merhaba,%20sipariş%20vermek%20istiyorum.";
+
+// Sertifikalar dizisi – public/sertifikalar/ klasörüne JPG yükleyin
+// Örnek isimlendirme: gidalama-sertifikasi.jpg, hijyen-belgesi.jpg vb.
+const sertifikalar = [
+  {
+    dosya: "/sertifikalar/gidalama-sertifikasi.jpg",
+    baslik: "Gıda Güvenliği Sertifikası",
+    aciklama: "Gıda Tarım ve Hayvancılık Bakanlığı onaylı",
+  },
+  {
+    dosya: "/sertifikalar/hijyen-belgesi.jpg",
+    baslik: "Hijyen Belgesi",
+    aciklama: "Sağlık Müdürlüğü tarafından verilmiştir",
+  },
+  {
+    dosya: "/sertifikalar/isyeri-acma-ruhsati.jpg",
+    baslik: "İşyeri Açma ve Çalışma Ruhsatı",
+    aciklama: "Nevşehir Belediyesi tarafından onaylanmıştır",
+  },
+  {
+    dosya: "/sertifikalar/helal-sertifikasi.jpg",
+    baslik: "Helal Gıda Sertifikası",
+    aciklama: "Tüm ürünlerimiz helal sertifikalıdır",
+  },
+  {
+    dosya: "/sertifikalar/vegan-dostu.jpg",
+    baslik: "Vegan Dostu Belge",
+    aciklama: "Bitkisel içerikli ürünlerimiz vegan sertifikalıdır",
+  },
+  {
+    dosya: "/sertifikalar/musteri-memnuniyet.jpg",
+    baslik: "Müşteri Memnuniyeti Ödülü",
+    aciklama: "Nevşehir en beğenilen yerel işletme ödülü",
+  },
+];
+---
+
+<BaseLayout
+  title="Hakkımızda & Sertifikalar | Oses Çiğköfte Nevşehir"
+  description="Oses Çiğköfte hakkında bilgi edinin. Gıda güvenliği sertifikalarımız, misyonumuz ve kalite taahhütlerimiz. Nevşehir'in güvenilir çiğköftecisi."
+  canonical="https://osesnevsehir.com/hakkimizda"
+>
+
+  <!-- ── Basit Header ── -->
+  <header class="mini-header">
+    <div class="container mini-header-inner">
+      <a href="/" class="logo" aria-label="Ana Sayfa">
+        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte" />
+      </a>
+      <details class="mobile-menu">
+        <summary aria-label="Menüyü aç">
+          <span></span>
+          <span></span>
+          <span></span>
+        </summary>
+        <nav aria-label="Mobil menü">
+          <a href="/">Ana Sayfa</a>
+          <a href="/menu">Menü</a>
+          <a href="/hakkimizda">Hakkımızda</a>
+        </nav>
+      </details>
+      <nav class="mini-nav">
+        <a href="/" class="nav-link">Ana Sayfa</a>
+        <a href="/menu" class="nav-link">Menü</a>
+        <a href={`tel:${TEL}`} class="btn btn-primary">📞 {TEL_DISPLAY}</a>
+        <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero: Hakkımızda ── -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero-content">
+        <span class="badge badge-red">🌯 Bizim Hikayemiz</span>
+        <h1>Nevşehir'de Çiğköftenin<br /><em>Doğru Adresi</em></h1>
+        <p>
+          Oses Çiğköfte olarak yıllardan beri Nevşehir'de taze, lezzetli ve uygun fiyatlı
+          çiğköfte dürüm sunuyoruz. 2000 Evler'de, üniversiteye yürüme mesafesinde, her
+          gün 11:00'den 02:00'a kadar hizmetinizdeyiz.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Değerlerimiz ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Neden Oses?</h2>
+        <p>Müşterilerimizin bizi tekrar tekrar tercih etme nedenleri</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🥬</div>
+          <h3>Günlük Taze Malzeme</h3>
+          <p>Her gün sabah taze ürünlerle çalışıyoruz. Hiçbir şeyi bir gün önceden hazırlamıyoruz.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🌱</div>
+          <h3>%100 Bitkisel</h3>
+          <p>Tüm ürünlerimiz vegan ve vejetaryen dostu. Hayvansal içerik kullanmıyoruz.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚡</div>
+          <h3>Hızlı Teslimat</h3>
+          <p>Nevşehir merkez ve 2000 Evler bölgesine hızlı teslimat yapıyoruz.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💰</div>
+          <h3>Uygun Fiyat</h3>
+          <p>Özellikle üniversite öğrencilerine yönelik, her bütçeye uygun fiyat politikası.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3>Samimi Hizmet</h3>
+          <p>Her müşteri bize değerlidir. Sorunuz olursa her zaman arayabilirsiniz.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⭐</div>
+          <h3>4.8 Google Puanı</h3>
+          <p>124'ten fazla gerçek müşteri yorumuyla Nevşehir'in en yüksek puanlı çiğköftecisi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Sertifikalar Galerisi ── -->
+  <section class="section section-alt certs-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>📋 Sertifikalarımız & Belgelerimiz</h2>
+        <p>
+          Gıda güvenliği ve kalite standartlarımızı belgeleyen resmi sertifikalarımız.
+          Şeffaflığa inanıyoruz.
+        </p>
+      </div>
+
+      <div class="certs-grid">
+        {sertifikalar.map((sert) => (
+          <div class="cert-card">
+            <div class="cert-img-wrap">
+              <img
+                src={sert.dosya}
+                alt={sert.baslik}
+                loading="lazy"
+                width="400"
+                height="300"
+                class="cert-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <!-- Dosya henüz yüklenmemişse placeholder göster -->
+              <div class="cert-placeholder" style="display:none;">
+                <span>📄</span>
+                <p>{sert.baslik}</p>
+              </div>
+            </div>
+            <div class="cert-info">
+              <h3 class="cert-title">{sert.baslik}</h3>
+              <p class="cert-desc">{sert.aciklama}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Sertifika ekleme rehberi (geliştirici için yorum) -->
+      <!--
+        SERTIFIKA EKLEMEk için:
+        1. JPG dosyanızı /public/sertifikalar/ klasörüne atın
+        2. src/pages/hakkimizda.astro içindeki `sertifikalar` dizisini güncelleyin
+        3. npm run build ile build alın
+      -->
+    </div>
+  </section>
+
+  <!-- ── İletişime Geç CTA ── -->
+  <section class="section about-cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Siparişinizi Hemen Verin</h2>
+        <p>Sorularınız mı var? Bizi arayın ya da WhatsApp'tan yazın.</p>
+        <div class="cta-buttons">
+          <a href={`tel:${TEL}`} class="btn btn-primary btn-lg">
+            📞 {TEL_DISPLAY}
+          </a>
+          <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.851L.057 23.427a.5.5 0 0 0 .609.637l5.77-1.511A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.003-1.373l-.359-.213-3.724.976.993-3.622-.234-.372A9.797 9.797 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+            WhatsApp'tan Yaz
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer Minimal ── -->
+  <footer class="mini-footer">
+    <div class="container mini-footer-inner">
+      <p>© {new Date().getFullYear()} Oses Çiğköfte Nevşehir · 2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13</p>
+      <a href="/">Ana Sayfaya Dön</a>
+    </div>
+  </footer>
+
+  <!-- Floating WA -->
+  <a href={WA_GENEL} target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp Sipariş">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.851L.057 23.427a.5.5 0 0 0 .609.637l5.77-1.511A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.003-1.373l-.359-.213-3.724.976.993-3.622-.234-.372A9.797 9.797 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+  </a>
+</BaseLayout>
+
+<style>
+/* ── Mini Header ── */
+.mini-header {
+  background: #8ec63f;
+  border-bottom: 1px solid rgba(142,198,63,.32);
+  padding-block: .35rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.mini-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.logo { display: flex; align-items: center; gap: .5rem; }
+.site-logo-image { width: 190px; height: 76px; object-fit: contain; border-radius: 8px; }
+.mini-nav { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.nav-link { font-weight: 700; color: var(--col-text-muted); font-size: .9rem; }
+.nav-link:hover { color: var(--col-primary); }
+.mobile-menu { display: none; }
+
+/* ── About Hero ── */
+.about-hero {
+  background: linear-gradient(135deg, #fff8f0, #fdebd0);
+  padding-block: 3.5rem;
+  text-align: center;
+}
+.about-hero-content { max-width: 640px; margin-inline: auto; }
+.about-hero-content .badge { margin-bottom: 1rem; }
+.about-hero-content h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+.about-hero-content h1 em { font-style: normal; color: var(--col-primary); }
+.about-hero-content p { font-size: 1.05rem; color: var(--col-text-muted); line-height: 1.7; }
+
+/* ── Values ── */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+.value-card {
+  background: var(--col-surface);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--col-border);
+  transition: var(--transition);
+}
+.value-card:hover { box-shadow: var(--shadow-md); border-color: var(--col-accent); transform: translateY(-3px); }
+.value-icon { font-size: 2.2rem; margin-bottom: .75rem; }
+.value-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: .5rem; }
+.value-card p { font-size: .85rem; color: var(--col-text-muted); }
+
+/* ── Sertifikalar ── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.cert-card {
+  background: var(--col-surface);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--col-border);
+  transition: var(--transition);
+}
+.cert-card:hover { box-shadow: var(--shadow-md); border-color: var(--col-primary); transform: translateY(-3px); }
+.cert-img-wrap {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #f5f0eb;
+  position: relative;
+}
+.cert-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s var(--ease);
+}
+.cert-card:hover .cert-img { transform: scale(1.04); }
+.cert-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  color: var(--col-text-muted);
+  font-size: .85rem;
+  background: linear-gradient(135deg, #f5f0eb, #ede8e3);
+  position: absolute;
+  inset: 0;
+}
+.cert-placeholder span { font-size: 2.5rem; }
+.cert-info { padding: 1rem 1.25rem; }
+.cert-title { font-size: .95rem; font-weight: 800; margin-bottom: .3rem; }
+.cert-desc { font-size: .8rem; color: var(--col-text-muted); }
+
+/* ── CTA Box ── */
+.about-cta { background: linear-gradient(135deg, #fff8f0, #fdebd0); }
+.cta-box {
+  text-align: center;
+  max-width: 540px;
+  margin-inline: auto;
+}
+.cta-box h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: .75rem; }
+.cta-box p { color: var(--col-text-muted); margin-bottom: 1.75rem; }
+.cta-buttons { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+
+/* ── Mini Footer ── */
+.mini-footer {
+  background: var(--col-text);
+  color: #9c8275;
+  padding-block: 1.25rem;
+}
+.mini-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+  font-size: .82rem;
+}
+.mini-footer a { color: var(--col-accent); }
+
+/* ── Floating WA ── */
+.wa-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 999;
+  background: var(--col-wa);
+  color: #fff;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-wa);
+  animation: pulse-ring 2s infinite;
+}
+.wa-float:hover { background: var(--col-wa-dark); transform: scale(1.1); }
+
+@media (max-width: 768px) {
+  .mini-header { padding-block: .45rem; }
+  .mini-header-inner { flex-wrap: nowrap; justify-content: space-between; gap: .75rem; }
+  .site-logo-image { width: 158px; height: 62px; }
+  .mini-nav { display: none; }
+  .mobile-menu {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .mobile-menu summary {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(255,255,255,.72);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    list-style: none;
+  }
+  .mobile-menu summary::-webkit-details-marker { display: none; }
+  .mobile-menu summary span {
+    width: 22px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--col-text);
+    transition: var(--transition);
+  }
+  .mobile-menu[open] summary span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .mobile-menu[open] summary span:nth-child(2) { opacity: 0; }
+  .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu nav {
+    position: absolute;
+    top: calc(100% + .7rem);
+    right: 0;
+    width: min(240px, calc(100vw - 2.5rem));
+    padding: .5rem;
+    background: #fff;
+    border: 1px solid rgba(142,198,63,.24);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    gap: .25rem;
+    z-index: 200;
+  }
+  .mobile-menu nav a {
+    padding: .85rem 1rem;
+    border-radius: 8px;
+    color: var(--col-text);
+    font-weight: 900;
+  }
+  .mobile-menu nav a:hover { background: #fff8f0; color: var(--col-primary); }
+}
+</style>

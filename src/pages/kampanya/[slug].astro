@@ -1,0 +1,765 @@
+---
+// src/pages/kampanya/[slug].astro
+// Google Ads Çoklu URL – Her anahtar kelimeye özel sayfa
+// getStaticPaths() → build anında tüm slug'lar için HTML üretilir
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { adsKeywords } from "../../data/adsKeywords.js";
+import menu, { populerler } from "../../data/menu.js";
+import reviews from "../../data/reviews.js";
+
+export async function getStaticPaths() {
+  return adsKeywords.map((kw) => ({
+    params: { slug: kw.slug },
+    props: { kw },
+  }));
+}
+
+const { kw } = Astro.props;
+
+// WhatsApp ve Telefon sabitleri
+const TEL = "03842152502";
+const TEL_DISPLAY = "0384 215 2502";
+const WA_BASE = "https://wa.me/903842152502";
+const WA_GENEL = `${WA_BASE}?text=Merhaba,%20sipariş%20vermek%20istiyorum.`;
+const MAPS = "https://share.google/U463aknl3M19b6Wei";
+
+// WhatsApp mesajı – ürüne özel
+function waLink(urunAd: string) {
+  const msg = encodeURIComponent(
+    `Merhaba, ${urunAd} sipariş vermek istiyorum.`
+  );
+  return `${WA_BASE}?text=${msg}`;
+}
+---
+
+<BaseLayout title={kw.title} description={kw.description}>
+  <!-- ════════════════════════════════════════════
+       1. HEADER – Logo + Hızlı Arama Formu
+  ════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="/" class="logo" aria-label="Oses Çiğköfte Ana Sayfa">
+        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte Nevşehir" />
+      </a>
+
+      <details class="mobile-menu">
+        <summary aria-label="Menüyü aç">
+          <span></span>
+          <span></span>
+          <span></span>
+        </summary>
+        <nav aria-label="Mobil menü">
+          <a href="/">Ana Sayfa</a>
+          <a href="/menu">Menü</a>
+          <a href="/hakkimizda">Hakkımızda</a>
+        </nav>
+      </details>
+
+      <nav class="header-nav" aria-label="Ana menü">
+        <a href="/">Ana Sayfa</a>
+        <a href="/menu">Menü</a>
+        <a href="/hakkimizda">Hakkımızda</a>
+      </nav>
+
+      <!-- ── Hızlı Aksiyonlar ── -->
+      <div class="header-actions">
+        <a href={`tel:${TEL}`} class="btn btn-outline hide-mobile">
+          📞 {TEL_DISPLAY}
+        </a>
+        <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.851L.057 23.427a.5.5 0 0 0 .609.637l5.77-1.511A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.003-1.373l-.359-.213-3.724.976.993-3.622-.234-.372A9.797 9.797 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════
+       2. HERO – Dinamik H1 (Reklam kelimesiyle eşleşir)
+  ════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="container hero-inner">
+      <div class="hero-content animate-fade-up">
+        <div class="hero-badges">
+          <span class="badge badge-red">⭐ 4.8 Google Puanı</span>
+          <span class="badge badge-amber">🕐 11:00 – 02:00 Açık</span>
+        </div>
+        <h1 class="hero-h1">{kw.h1}</h1>
+        <p class="hero-sub">
+          2000 Evler'de, üniversiteye yürüme mesafesinde. Taze malzeme, uygun fiyat, hızlı teslimat.
+        </p>
+        <div class="hero-cta">
+          <a href={`tel:${TEL}`} class="btn btn-primary btn-lg">
+            📞 Hemen Ara – {TEL_DISPLAY}
+          </a>
+          <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.851L.057 23.427a.5.5 0 0 0 .609.637l5.77-1.511A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.003-1.373l-.359-.213-3.724.976.993-3.622-.234-.372A9.797 9.797 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+            WhatsApp'tan Sipariş Ver
+          </a>
+        </div>
+        <div class="hero-trust">
+          <span>✅ Günlük taze malzeme</span>
+          <span>✅ Vegan & vejetaryen</span>
+          <span>✅ Hızlı teslimat</span>
+        </div>
+      </div>
+      <div class="hero-visual animate-fade-up delay-2">
+        <img class="hero-banner-image" src="/images/banner-ozel.jpg" alt="Oses Çiğköfte özel kampanya bannerı" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       3. EN ÇOK SİPARİŞ VERİLENLER (Öne Çıkanlar)
+  ════════════════════════════════════════════ -->
+  <section class="section section-alt populer-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>🔥 En Çok Sipariş Verilenler</h2>
+        <p>Müşterilerimizin en çok tercih ettiği lezzetler</p>
+      </div>
+      <div class="populer-grid">
+        {populerler.map((item) => (
+          <div class="populer-card">
+            <img class="populer-image" src={item.image} alt={item.ad} loading="lazy" />
+            <div class="populer-info">
+              <h3>{item.ad}</h3>
+              <p>{item.aciklama}</p>
+              <div class="populer-footer">
+                <span class="populer-fiyat">{item.fiyat} ₺</span>
+                <a
+                  href={waLink(item.ad)}
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-wa"
+                >
+                  Sipariş Ver
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       4. DİJİTAL MENÜ – Ucuzdan Pahalıya Sıralı
+  ════════════════════════════════════════════ -->
+  <section class="section menu-section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <h2>🍽️ Tüm Menümüz</h2>
+        <p>Şeffaf fiyatlar — sürpriz yok. Her bütçeye uygun seçenekler.</p>
+      </div>
+      <div class="menu-grid">
+        {menu.map((item) => (
+          <div class={`menu-card ${item.popüler ? "menu-card--popular" : ""}`}>
+            {item.popüler && <span class="menu-badge">⭐ Popüler</span>}
+            <img class="menu-image" src={item.image} alt={item.ad} loading="lazy" />
+            <div class="menu-body">
+              <span class="menu-kategori">{item.kategori}</span>
+              <h3 class="menu-ad">{item.ad}</h3>
+              <p class="menu-aciklama">{item.aciklama}</p>
+            </div>
+            <div class="menu-footer">
+              <span class="menu-fiyat">{item.fiyat} ₺</span>
+              <a
+                href={waLink(item.ad)}
+                target="_blank"
+                rel="noopener"
+                class="btn btn-wa btn-block"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.851L.057 23.427a.5.5 0 0 0 .609.637l5.77-1.511A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.003-1.373l-.359-.213-3.724.976.993-3.622-.234-.372A9.797 9.797 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+                WhatsApp ile Sipariş Ver
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Floating Sipariş CTA -->
+      <div class="menu-cta">
+        <p>Menüde aradığını bulamadın mı? Bizi ara, sana özel çözelim.</p>
+        <a href={`tel:${TEL}`} class="btn btn-primary btn-lg">
+          📞 {TEL_DISPLAY} – Hemen Ara
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       5. GOOGLE DEĞERLENDİRMELERİ (Social Proof)
+  ════════════════════════════════════════════ -->
+  <section class="section section-alt reviews-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="reviews-score">
+          <span class="score-number">4.8</span>
+          <div>
+            <div class="stars">★★★★★</div>
+            <p>Google Değerlendirmeleri</p>
+          </div>
+        </div>
+        <h2>Müşterilerimiz Ne Diyor?</h2>
+        <p>124'ten fazla gerçek müşteri yorumu</p>
+      </div>
+      <div class="reviews-grid">
+        {reviews.map((r) => (
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar">{r.avatar}</div>
+              <div>
+                <strong class="review-name">{r.isim}</strong>
+                <div class="stars" aria-label={`${r.yildiz} yıldız`}>
+                  {"★".repeat(r.yildiz)}{"☆".repeat(5 - r.yildiz)}
+                </div>
+              </div>
+              <span class="review-date">{r.tarih}</span>
+            </div>
+            <p class="review-text">"{r.yorum}"</p>
+            <div class="review-google">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#4285f4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34a853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#fbbc05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#ea4335"/></svg>
+              Google'da Doğrulandı
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center; margin-top: 2rem;">
+        <a
+          href={MAPS}
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline"
+        >
+          Tüm Yorumları Google'da Gör →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       6. FOOTER – Harita + Saatler + İletişim
+  ════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <!-- İletişim Bilgileri -->
+      <div class="footer-info">
+        <div class="footer-logo">
+          <img class="footer-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte" />
+        </div>
+        <ul class="footer-list">
+          <li>
+            <strong>📍 Adres</strong><br />
+            2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13<br />
+            50100 Merkez / Nevşehir
+          </li>
+          <li>
+            <strong>📞 Telefon & WhatsApp</strong><br />
+            <a href={`tel:${TEL}`}>{TEL_DISPLAY}</a>
+          </li>
+          <li>
+            <strong>🕐 Çalışma Saatleri</strong><br />
+            Her Gün: 11:00 – 02:00
+          </li>
+          <li>
+            <strong>✉️ E-posta</strong><br />
+            <a href="mailto:osesnew50@gmail.com">osesnew50@gmail.com</a>
+          </li>
+          <li>
+            <strong>🌐 Web Sitesi</strong><br />
+            <a href="https://osesnevsehir.com/" target="_blank" rel="noopener">osesnevsehir.com</a>
+          </li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/osesnevsehir" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61566379798330" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href={WA_GENEL} target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.851L.057 23.427a.5.5 0 0 0 .609.637l5.77-1.511A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.003-1.373l-.359-.213-3.724.976.993-3.622-.234-.372A9.797 9.797 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Google Harita Embed -->
+      <div class="footer-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.6!2d34.724!3d38.624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM3JzI2LjQiTiAzNMKwNDMnMjYuNCJF!5e0!3m2!1str!2str!4v1"
+          width="100%"
+          height="260"
+          style="border:0; border-radius:12px;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Oses Çiğköfte Konumu"
+        ></iframe>
+        <a href={MAPS} target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:.75rem; width:100%; justify-content:center; display:flex;">
+          🗺️ Google Haritalar'da Aç
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© {new Date().getFullYear()} Oses Çiğköfte Nevşehir · Tüm hakları saklıdır.</p>
+        <a href="/hakkimizda">Hakkımızda & Sertifikalar</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════ Floating WhatsApp Butonu ════ -->
+  <a href={WA_GENEL} target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp'tan Sipariş Ver">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.851L.057 23.427a.5.5 0 0 0 .609.637l5.77-1.511A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.003-1.373l-.359-.213-3.724.976.993-3.622-.234-.372A9.797 9.797 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/></svg>
+    <span class="wa-float-label">Sipariş Ver</span>
+  </a>
+
+</BaseLayout>
+
+<style>
+/* ── Header ── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #8ec63f;
+  border-bottom: 1px solid rgba(142,198,63,.32);
+  box-shadow: var(--shadow-sm);
+  padding-block: .35rem;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.site-logo-image {
+  width: 190px;
+  height: 76px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  margin-left: auto;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 999px;
+  padding: .25rem;
+}
+.header-nav a {
+  padding: .55rem .85rem;
+  border-radius: 999px;
+  font-size: .86rem;
+  font-weight: 800;
+  color: var(--col-text-muted);
+}
+.header-nav a:hover {
+  background: var(--col-primary);
+  color: #fff;
+}
+.mobile-menu { display: none; }
+
+.header-actions { display: flex; gap: .6rem; align-items: center; flex-shrink: 0; }
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, #fff8f0 0%, #fdebd0 50%, #fff 100%);
+  overflow: hidden;
+  padding-block: 4rem 3.5rem;
+}
+.hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 80%, rgba(230,51,18,.07) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(245,158,11,.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+  gap: 3rem;
+  align-items: center;
+}
+.hero-content { max-width: 660px; }
+.hero-badges { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.hero-h1 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--col-text);
+  margin-bottom: 1rem;
+  line-height: 1.08;
+}
+.hero-h1 em { font-style: normal; color: var(--col-primary); }
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--col-text-muted);
+  margin-bottom: 1.75rem;
+  max-width: 500px;
+}
+.hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.hero-trust { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: var(--col-text-muted); }
+.hero-trust span::before { content: ""; }
+
+.hero-visual {
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.hero-banner-image {
+  width: 100%;
+  max-width: 430px;
+  max-height: 430px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(255,255,255,.8);
+  background: rgba(255,255,255,.62);
+  display: block;
+}
+
+/* ── Popüler ── */
+.populer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+.populer-card {
+  background: var(--col-surface);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid var(--col-border);
+  transition: var(--transition);
+}
+.populer-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--col-primary); }
+.populer-image {
+  width: 82px;
+  height: 82px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.populer-info { flex: 1; }
+.populer-info h3 { font-size: 1rem; margin-bottom: .25rem; font-weight: 800; }
+.populer-info p { font-size: .82rem; color: var(--col-text-muted); margin-bottom: .75rem; }
+.populer-footer { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.populer-fiyat { font-size: 1.2rem; font-weight: 900; color: var(--col-primary); }
+
+/* ── Menü ── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.menu-card {
+  position: relative;
+  background: var(--col-surface);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--col-border);
+  transition: var(--transition);
+}
+.menu-card:hover { box-shadow: var(--shadow-md); border-color: var(--col-accent); }
+.menu-card--popular {
+  border-color: var(--col-primary);
+  background: linear-gradient(135deg, #fff8f0, #fff);
+}
+.menu-badge {
+  position: absolute;
+  top: -.5rem;
+  left: 1rem;
+  background: var(--col-primary);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 800;
+  padding: .2rem .6rem;
+  border-radius: 999px;
+}
+.menu-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+.menu-body { flex: 1; }
+.menu-kategori { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--col-text-light); }
+.menu-ad { font-size: 1rem; font-weight: 800; margin: .2rem 0 .35rem; color: var(--col-text); }
+.menu-aciklama { font-size: .82rem; color: var(--col-text-muted); }
+.menu-footer { display: flex; flex-direction: column; gap: .5rem; margin-top: .25rem; }
+.menu-fiyat { font-size: 1.4rem; font-weight: 900; color: var(--col-primary); }
+.menu-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, #fff8f0, #fdebd0);
+  border-radius: 16px;
+  border: 1.5px dashed var(--col-accent);
+}
+.menu-cta p { margin-bottom: 1rem; color: var(--col-text-muted); }
+
+/* ── Reviews ── */
+.reviews-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.score-number {
+  font-size: 3.5rem;
+  font-weight: 900;
+  font-family: var(--font-display);
+  color: var(--col-primary);
+  line-height: 1;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.review-card {
+  background: var(--col-surface);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--col-border);
+  transition: var(--transition);
+}
+.review-card:hover { box-shadow: var(--shadow-md); }
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--col-primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .8rem;
+  flex-shrink: 0;
+}
+.review-name { font-weight: 800; font-size: .9rem; display: block; }
+.review-date { margin-left: auto; font-size: .72rem; color: var(--col-text-light); }
+.review-text { font-size: .88rem; color: var(--col-text-muted); line-height: 1.6; font-style: italic; margin-bottom: .75rem; }
+.review-google {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .72rem;
+  color: var(--col-text-light);
+}
+
+/* ── Footer ── */
+.site-footer {
+  background: #160b06;
+  color: #e8ddd5;
+  padding-top: 2.5rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(360px, 1.05fr);
+  gap: 2.5rem;
+  align-items: start;
+  padding-bottom: 2rem;
+}
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.footer-logo-image {
+  width: 126px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.footer-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  font-size: .88rem;
+}
+.footer-list li {
+  min-height: 86px;
+  line-height: 1.5;
+  padding: .85rem;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+}
+.footer-list strong {
+  color: var(--col-accent);
+  display: block;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  margin-bottom: .45rem;
+}
+.footer-list a { color: #fff; text-decoration: none; font-weight: 700; }
+.footer-list a:hover { color: var(--col-accent); }
+.footer-social { display: flex; gap: .65rem; }
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,.08);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.footer-social a:hover { background: var(--col-primary); }
+.footer-map iframe {
+  height: 260px;
+  border-radius: 8px !important;
+}
+.footer-map .btn {
+  border-radius: 8px;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-block: 1rem;
+}
+.footer-bottom .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .82rem;
+  color: var(--col-text-light);
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.footer-bottom a { color: var(--col-accent); }
+
+/* ── Floating WA ── */
+.wa-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 999;
+  background: var(--col-wa);
+  color: #fff;
+  border-radius: 999px;
+  padding: .75rem 1.25rem .75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  box-shadow: var(--shadow-wa);
+  animation: pulse-ring 2s infinite;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: .9rem;
+}
+.wa-float:hover { background: var(--col-wa-dark); transform: scale(1.05); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .site-header { padding-block: .45rem; }
+  .header-inner { flex-wrap: nowrap; justify-content: space-between; gap: .75rem; }
+  .site-logo-image { width: 158px; height: 62px; }
+  .header-nav,
+  .header-actions { display: none; }
+  .mobile-menu {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .mobile-menu summary {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(255,255,255,.72);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    list-style: none;
+  }
+  .mobile-menu summary::-webkit-details-marker { display: none; }
+  .mobile-menu summary span {
+    width: 22px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--col-text);
+    transition: var(--transition);
+  }
+  .mobile-menu[open] summary span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .mobile-menu[open] summary span:nth-child(2) { opacity: 0; }
+  .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu nav {
+    position: absolute;
+    top: calc(100% + .7rem);
+    right: 0;
+    width: min(240px, calc(100vw - 2.5rem));
+    padding: .5rem;
+    background: #fff;
+    border: 1px solid rgba(142,198,63,.24);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    gap: .25rem;
+    z-index: 200;
+  }
+  .mobile-menu nav a {
+    padding: .85rem 1rem;
+    border-radius: 8px;
+    color: var(--col-text);
+    font-weight: 900;
+  }
+  .mobile-menu nav a:hover { background: #fff8f0; color: var(--col-primary); }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-banner-image { border-radius: 14px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .hero-cta { flex-direction: column; }
+  .hero-cta .btn { width: 100%; justify-content: center; }
+  .wa-float-label { display: none; }
+  .wa-float { padding: 1rem; border-radius: 50%; }
+}
+</style>

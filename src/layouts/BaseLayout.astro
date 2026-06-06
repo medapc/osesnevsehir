@@ -1,0 +1,86 @@
+---
+// src/layouts/BaseLayout.astro
+// Tüm sayfalar için ortak HTML kabuğu – meta, OG, schema.org
+const {
+  title = "Oses Çiğköfte Nevşehir | Çiğköfte Dürüm Sipariş",
+  description = "Nevşehir'de çiğköfte siparişinin tek adresi Oses! 2000 Evler, üniversite yanı. 0384 215 2502",
+  canonical,
+} = Astro.props;
+
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+---
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:locale" content="tr_TR" />
+
+  <!-- Geo & Local SEO -->
+  <meta name="geo.region" content="TR-50" />
+  <meta name="geo.placename" content="Nevşehir" />
+  <meta name="geo.position" content="38.6240;34.7240" />
+  <meta name="ICBM" content="38.6240, 34.7240" />
+
+  <!-- Schema.org – LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "Oses Çiğköfte Nevşehir Üniversite",
+    "image": "https://osesnevsehir.com/og-image.jpg",
+    "url": "https://osesnevsehir.com",
+    "telephone": "+903842152502",
+    "email": "osesnew50@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13",
+      "addressLocality": "Nevşehir",
+      "postalCode": "50100",
+      "addressCountry": "TR"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "11:00",
+        "closes": "02:00"
+      }
+    ],
+    "servesCuisine": "Turkish",
+    "priceRange": "₺",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "124"
+    },
+    "sameAs": [
+      "https://www.instagram.com/osesnevsehir",
+      "https://www.facebook.com/profile.php?id=61566379798330"
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/src/styles/global.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <slot />
+</body>
+</html>

@@ -1,0 +1,559 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { flatMenuItemCount, menuCategories } from "../data/fullMenu.js";
+
+const TEL = "03842152502";
+const TEL_DISPLAY = "0384 215 2502";
+const WA_BASE = "https://wa.me/903842152502";
+const WA_GENEL = `${WA_BASE}?text=Merhaba,%20sipari%C5%9F%20vermek%20istiyorum.`;
+
+const iconMap = {
+  Star: "★",
+  Wrap: "◒",
+  Plate: "●",
+  Menu: "◆",
+  Dessert: "▣",
+  IceCream: "◌",
+  Sauce: "◈",
+  Kofte: "●",
+  Drink: "◍",
+};
+
+function waLink(itemName) {
+  return `${WA_BASE}?text=${encodeURIComponent(`Merhaba, ${tr(itemName)} sipariş vermek istiyorum.`)}`;
+}
+
+function productImage(itemName = "", categoryId = "") {
+  const name = itemName.toLowerCase();
+  if (name.includes("doritoslu mega")) return "/images/menu/doritoslu-mega-durum.jpg";
+  if (name.includes("doritoslu")) return "/images/menu/doritoslu-durum.jpg";
+  if (name.includes("2'li") && name.includes("sam")) return "/images/menu/iki-durum-sam-tatlisi-menu.jpg";
+  if (name.includes("4'lu")) return "/images/menu/dortlu-menu.jpg";
+  if (name.includes("3'lu")) return "/images/menu/uclu-durum.jpg";
+  if (name.includes("2'li mega") || name.includes("2'li cig kofte")) return "/images/menu/iki-durum-menu.jpg";
+  if (name.includes("tursu suyu") && name.includes("durum")) return "/images/menu/durum-salgam.jpg";
+  if (name.includes("tatli") && name.includes("mega")) return "/images/menu/mega-durum-tatli-menu.jpg";
+  if (name.includes("mega cig kofte durum")) return "/images/menu/mega-durum.jpg";
+  if (name.includes("durum")) return "/images/menu/durum.jpg";
+  if (name.includes("300 gr")) return "/images/menu/paket-300gr.jpg";
+  if (name.includes("500 gr") && name.includes("tursu")) return "/images/menu/paket-500gr-salgam.jpg";
+  if (name.includes("500 gr")) return "/images/menu/paket-500gr.jpg";
+  if (name.includes("750 gr")) return "/images/menu/paket-750gr.jpg";
+  if (name.includes("900 gr") || name.includes("1 kg")) return "/images/menu/paket-1kg.jpg";
+  if (name.includes("tavukgogsu")) return "/images/menu/eker-tavukgogsu.jpg";
+  if (name.includes("kazandibi")) return "/images/menu/eker-kazandibi.jpg";
+  if (name.includes("keskul")) return "/images/menu/eker-keskul.jpg";
+  if (name.includes("sutlac")) return "/images/menu/eker-sutlac.jpg";
+  if (name.includes("supangle")) return "/images/menu/eker-supangle.jpg";
+  if (name.includes("sakizli")) return "/images/menu/eker-sakizli-muhallebi.jpg";
+  if (name.includes("puding")) return "/images/menu/eker-cikolatali-puding.jpg";
+  if (name.includes("profiterol")) return "/images/menu/eker-profiterol.jpg";
+  if (name.includes("helva") || name.includes("sam tatlisi")) return "/images/menu/iki-durum-sam-tatlisi-menu.jpg";
+  if (name.includes("aci sos")) return "/images/menu/aci-sos.jpg";
+  if (name.includes("cig kofte sos") || name.includes("stick")) return "/images/menu/cig-kofte-sos.jpg";
+  if (name.includes("lavas") || name.includes("yesillik")) return "/images/menu/servis-tabagi.jpg";
+  if (name.includes("kofte") && categoryId === "diger-lezzetler") return "/images/menu/servis-tabagi.jpg";
+  if (name.includes("zero") && name.includes("1 l")) return "/images/menu/cola-zero-1lt.jpg";
+  if (name.includes("zero")) return "/images/menu/cola-zero-kutu.jpg";
+  if (name.includes("coca-cola") && name.includes("1 l")) return "/images/menu/kola-1lt.jpg";
+  if (name.includes("coca-cola")) return "/images/menu/kola-kutu.jpg";
+  if (name.includes("fanta") && name.includes("1 l")) return "/images/menu/fanta-1lt.jpg";
+  if (name.includes("fanta") || name.includes("sprite") || name.includes("cappy")) return "/images/menu/fanta-kutu.jpg";
+  if (name.includes("nigde")) return "/images/menu/nigde-gazozu.jpg";
+  if (name.includes("salgam")) return "/images/menu/tursu-suyu.jpg";
+  if (name.includes("tursu")) return "/images/menu/tursu-suyu.jpg";
+  if (name.includes("ayran") && name.includes("1 l")) return "/images/menu/ayran-1lt.jpg";
+  if (name.includes("ayran") && (name.includes("29") || name.includes("30") || name.includes("33"))) return "/images/menu/ayran-buyuk.jpg";
+  if (name.includes("ayran")) return "/images/menu/ayran-kucuk.jpg";
+  if (name.includes("soda")) return "/images/menu/soda.jpg";
+  if (name.includes("su")) return "/images/menu/su.jpg";
+  if (categoryId === "dondurmalar") return "/images/menu/eker-sutlac.jpg";
+  return "/images/menu/servis-tabagi.jpg";
+}
+
+function tr(value = "") {
+  return value
+    .replaceAll("Cig", "Çiğ")
+    .replaceAll("Kofte", "Köfte")
+    .replaceAll("Durum", "Dürüm")
+    .replaceAll("Porsiyon", "Porsiyon")
+    .replaceAll("Populer", "Popüler")
+    .replaceAll("Urunler", "Ürünler")
+    .replaceAll("Firsat", "Fırsat")
+    .replaceAll("Menuleri", "Menüleri")
+    .replaceAll("Menu", "Menü")
+    .replaceAll("Meni", "Menü")
+    .replaceAll("Tatlilar", "Tatlılar")
+    .replaceAll("Dondurmalar", "Dondurmalar")
+    .replaceAll("Icecekler", "İçecekler")
+    .replaceAll("Icecek", "İçecek")
+    .replaceAll("Soslar & Yan Urunler", "Soslar & Yan Ürünler")
+    .replaceAll("Soslar ve Yan Urunler", "Soslar ve Yan Ürünler")
+    .replaceAll("Diger Lezzetler", "Diğer Lezzetler")
+    .replaceAll("cok", "çok")
+    .replaceAll("coklu", "çoklu")
+    .replaceAll("secenekleri", "seçenekleri")
+    .replaceAll("cesitleri", "çeşitleri")
+    .replaceAll("sec", "seç")
+    .replaceAll("sececegin", "seçeceğin")
+    .replaceAll("Yesilliksiz", "Yeşilliksiz")
+    .replaceAll("Yesillik", "Yeşillik")
+    .replaceAll("Lavas", "Lavaş")
+    .replaceAll("Tursu", "Turşu")
+    .replaceAll("Aci", "Acı")
+    .replaceAll("Ozel", "Özel")
+    .replaceAll("Algida Menüsü", "Algida Menüsü")
+    .replaceAll("Tatli", "Tatlı")
+    .replaceAll("Sam", "Şam")
+    .replaceAll("Soslu", "Soslu")
+    .replaceAll("Litrelik", "Litrelik")
+    .replaceAll("Fiyat sorunuz", "Fiyat sorunuz")
+    .replaceAll("Tavukgogsu", "Tavukgöğsü")
+    .replaceAll("Keskul", "Keşkül")
+    .replaceAll("Sutlac", "Sütlaç")
+    .replaceAll("Sakizli", "Sakızlı")
+    .replaceAll("Cikolatali", "Çikolatalı")
+    .replaceAll("Cikolata", "Çikolata")
+    .replaceAll("Findikli", "Fındıklı")
+    .replaceAll("Fistikli", "Fıstıklı")
+    .replaceAll("Sutlu", "Sütlü")
+    .replaceAll("Portakalli", "Portakallı")
+    .replaceAll("Bademli", "Bademli")
+    .replaceAll("Cikolatalı", "Çikolatalı")
+    .replaceAll("Usulu", "Usulü")
+    .replaceAll("Isli", "Islı")
+    .replaceAll("Kizartma", "Kızartma")
+    .replaceAll("Doganay Salgam", "Doğanay Şalgam")
+    .replaceAll("Nigde", "Niğde")
+    .replaceAll("Seftali", "Şeftali")
+    .replaceAll("Visne", "Vişne")
+    .replaceAll("Buyuk", "Büyük")
+    .replaceAll("Kucuk", "Küçük");
+}
+---
+
+<BaseLayout
+  title="Menü | Oses Çiğköfte Nevşehir Üniversite"
+  description="Oses Çiğköfte Nevşehir Üniversite güncel menüsü: çiğ köfte dürümler, fırsat menüleri, tatlılar, dondurmalar, soslar ve içecekler."
+  canonical="https://osesnevsehir.com/menu"
+>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Oses Çiğköfte Ana Sayfa">
+        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte Nevşehir" />
+      </a>
+      <details class="mobile-menu">
+        <summary aria-label="Menüyü aç">
+          <span></span>
+          <span></span>
+          <span></span>
+        </summary>
+        <nav aria-label="Mobil menü">
+          <a href="/">Ana Sayfa</a>
+          <a href="/menu">Menü</a>
+          <a href="/hakkimizda">Hakkımızda</a>
+        </nav>
+      </details>
+      <nav class="header-nav" aria-label="Ana menü">
+        <a href="/">Ana Sayfa</a>
+        <a href="/menu" aria-current="page">Menü</a>
+        <a href="/hakkimizda">Hakkımızda</a>
+      </nav>
+      <div class="header-actions">
+        <a href={`tel:${TEL}`} class="btn btn-outline hide-mobile">☎ {TEL_DISPLAY}</a>
+        <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="menu-hero">
+      <div class="container menu-hero-inner">
+        <p class="menu-eyebrow">Menümüzde</p>
+        <h1>Oses Çiğköfte Menüleri</h1>
+        <p class="menu-lead">
+          Dürümden kiloluk çiğ köfteye, tatlıdan içeceğe kadar {flatMenuItemCount} ürünlük güncel liste.
+          Sipariş için ürünü seçip WhatsApp üzerinden bize yazabilirsiniz.
+        </p>
+      </div>
+    </section>
+
+    <section class="menu-page">
+      <div class="container">
+        <nav class="category-pills" aria-label="Menü kategorileri">
+          {menuCategories.map((category) => (
+            <a href={`#${category.id}`} class="category-pill">
+              <span>{iconMap[category.icon]}</span>
+              {tr(category.title)}
+            </a>
+          ))}
+        </nav>
+
+        <div class="menu-sections">
+          {menuCategories.map((category) => (
+            <section class="menu-category" id={category.id}>
+              <div class="menu-category-head">
+                <div>
+                  <span class="category-mark">{iconMap[category.icon]}</span>
+                  <p>{tr(category.description)}</p>
+                  <h2>{tr(category.title)}</h2>
+                </div>
+                <a href={WA_GENEL} target="_blank" rel="noopener" class="category-order">Sipariş Ver</a>
+              </div>
+
+              {category.groups ? (
+                <div class="menu-groups">
+                  {category.groups.map((group) => (
+                    <div class="menu-group">
+                      <h3>{tr(group.title)}</h3>
+                      <div class="menu-card-grid menu-card-grid--compact">
+                        {group.items.map((item) => (
+                          <article class="menu-product-card">
+                            <img class={`menu-product-image ${["icecekler", "tatlilar", "dondurmalar", "soslar-yan-urunler"].includes(category.id) ? "menu-product-image--contain" : ""}`} src={productImage(item.name, category.id)} alt={tr(item.name)} loading="lazy" />
+                            <div>
+                              <h4>{tr(item.name)}</h4>
+                              {item.detail && <p>{tr(item.detail)}</p>}
+                            </div>
+                            <div class="product-footer">
+                              <strong>{item.price}</strong>
+                              <a href={waLink(item.name)} target="_blank" rel="noopener" aria-label={`${tr(item.name)} sipariş ver`}>+</a>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div class="menu-card-grid">
+                  {category.items.map((item) => (
+                    <article class="menu-product-card">
+                      <img class={`menu-product-image ${["icecekler", "tatlilar", "dondurmalar", "soslar-yan-urunler"].includes(category.id) ? "menu-product-image--contain" : ""}`} src={productImage(item.name, category.id)} alt={tr(item.name)} loading="lazy" />
+                      <div>
+                        <h3>{tr(item.name)}</h3>
+                        {item.detail && <p>{tr(item.detail)}</p>}
+                      </div>
+                      <div class="product-footer">
+                        <strong>{item.price}</strong>
+                        <a href={waLink(item.name)} target="_blank" rel="noopener" aria-label={`${tr(item.name)} sipariş ver`}>+</a>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </section>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="menu-footer">
+    <div class="container menu-footer-inner">
+      <div>
+        <img class="footer-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte" />
+        <p>2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13, 50100 Merkez/Nevşehir</p>
+      </div>
+      <div class="menu-footer-actions">
+        <a href={`tel:${TEL}`} class="btn btn-outline">☎ {TEL_DISPLAY}</a>
+        <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #8ec63f;
+  border-bottom: 1px solid rgba(142,198,63,.32);
+  box-shadow: var(--shadow-sm);
+  padding-block: .35rem;
+}
+.header-inner { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; flex-shrink: 0; }
+.site-logo-image { width: 190px; height: 76px; object-fit: contain; border-radius: 8px; }
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  margin-left: auto;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 999px;
+  padding: .25rem;
+}
+.header-nav a {
+  padding: .55rem .85rem;
+  border-radius: 999px;
+  font-size: .86rem;
+  font-weight: 800;
+  color: var(--col-text-muted);
+}
+.header-nav a[aria-current="page"],
+.header-nav a:hover { background: var(--col-primary); color: #fff; }
+.mobile-menu { display: none; }
+.header-actions { display: flex; gap: .6rem; align-items: center; flex-shrink: 0; }
+
+.menu-hero {
+  background:
+    radial-gradient(circle at 18% 15%, rgba(142,198,63,.2), transparent 26%),
+    linear-gradient(135deg, #fff8f0 0%, #fdebd0 48%, #fff 100%);
+  padding-block: 4.5rem 3rem;
+  text-align: center;
+}
+.menu-hero-inner { max-width: 760px; }
+.menu-eyebrow {
+  color: var(--col-primary);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: .75rem;
+}
+.menu-hero h1 {
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  margin-bottom: .75rem;
+}
+.menu-lead {
+  color: var(--col-text-muted);
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.menu-page {
+  background: #fffaf4;
+  padding-block: 2rem 4rem;
+}
+.category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-bottom: 2rem;
+}
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .72rem 1.05rem;
+  border: 1px solid #ecd9c8;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--col-text);
+  font-weight: 800;
+  box-shadow: var(--shadow-sm);
+}
+.category-pill:hover {
+  border-color: var(--col-primary);
+  color: var(--col-primary);
+  transform: translateY(-1px);
+}
+
+.menu-sections { display: grid; gap: 2rem; }
+.menu-category {
+  scroll-margin-top: 110px;
+}
+.menu-category-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.menu-category-head p {
+  color: var(--col-primary);
+  font-size: .78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: .2rem;
+}
+.menu-category-head h2 {
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+}
+.category-mark {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #8ec63f;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 900;
+  margin-bottom: .65rem;
+}
+.category-order {
+  flex-shrink: 0;
+  color: var(--col-primary);
+  font-weight: 900;
+  border-bottom: 2px solid currentColor;
+}
+.menu-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+.menu-card-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.menu-product-card {
+  min-height: 260px;
+  background: #fff;
+  border: 1px solid #ecded1;
+  border-radius: 8px;
+  padding: .8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 14px 34px rgba(26,18,11,.06);
+  overflow: hidden;
+}
+.menu-product-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  background: #f8f3ed;
+  border: 1px solid #f0e4da;
+  border-radius: 8px;
+  margin-bottom: .9rem;
+}
+.menu-product-image--contain {
+  object-fit: contain;
+  padding: .45rem;
+}
+.menu-product-card h3,
+.menu-product-card h4 {
+  font-size: 1rem;
+  line-height: 1.35;
+  margin-bottom: .6rem;
+}
+.menu-product-card p {
+  color: var(--col-text-muted);
+  font-size: .86rem;
+}
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.product-footer strong {
+  color: var(--col-primary);
+  font-size: 1.2rem;
+  white-space: nowrap;
+}
+.product-footer a {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--col-wa);
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.menu-groups { display: grid; gap: 1.25rem; }
+.menu-group h3 {
+  font-size: 1.05rem;
+  margin-bottom: .75rem;
+  color: var(--col-text);
+}
+
+.menu-footer {
+  background: #160b06;
+  color: #e8ddd5;
+  padding-block: 2rem;
+}
+.menu-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.footer-logo-image {
+  width: 126px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: .75rem;
+}
+.menu-footer p { color: #c7b8ac; font-size: .9rem; }
+.menu-footer-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+@media (max-width: 768px) {
+  .site-header { padding-block: .45rem; }
+  .header-inner { flex-wrap: nowrap; justify-content: space-between; gap: .75rem; }
+  .site-logo-image { width: 158px; height: 62px; }
+  .header-nav,
+  .header-actions { display: none; }
+  .mobile-menu {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .mobile-menu summary {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(255,255,255,.72);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    list-style: none;
+  }
+  .mobile-menu summary::-webkit-details-marker { display: none; }
+  .mobile-menu summary span {
+    width: 22px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--col-text);
+    transition: var(--transition);
+  }
+  .mobile-menu[open] summary span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .mobile-menu[open] summary span:nth-child(2) { opacity: 0; }
+  .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu nav {
+    position: absolute;
+    top: calc(100% + .7rem);
+    right: 0;
+    width: min(240px, calc(100vw - 2.5rem));
+    padding: .5rem;
+    background: #fff;
+    border: 1px solid rgba(142,198,63,.24);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    gap: .25rem;
+    z-index: 200;
+  }
+  .mobile-menu nav a {
+    padding: .85rem 1rem;
+    border-radius: 8px;
+    color: var(--col-text);
+    font-weight: 900;
+  }
+  .mobile-menu nav a:hover { background: #fff8f0; color: var(--col-primary); }
+  .menu-category-head { align-items: start; flex-direction: column; }
+  .menu-footer-inner { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .menu-hero { padding-block: 3rem 2rem; }
+  .category-pills { gap: .55rem; }
+  .category-pill { width: 100%; justify-content: center; }
+  .menu-card-grid,
+  .menu-card-grid--compact { grid-template-columns: 1fr; }
+}
+</style>
