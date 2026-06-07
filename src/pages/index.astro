@@ -8,23 +8,23 @@ import menu, { populerler } from "../data/menu.js";
 
 const TEL = "03842152502";
 const TEL_DISPLAY = "0384 215 2502";
-const WA_GENEL = "https://wa.me/903842152502?text=Merhaba,%20sipariş%20vermek%20istiyorum.";
+const WA_GENEL = `https://wa.me/903842152502?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden sipariş vermek istiyorum.")}`;
 
 function waLink(urunAd: string) {
-  return `https://wa.me/903842152502?text=${encodeURIComponent(`Merhaba, ${urunAd} sipariş vermek istiyorum.`)}`;
+  return `https://wa.me/903842152502?text=${encodeURIComponent(`Merhaba, osesnevsehir.com üzerinden ${urunAd} siparişi vermek istiyorum.`)}`;
 }
 ---
 
 <BaseLayout
-  title="Oses Çiğköfte Nevşehir | Nevşehir Çiğköfte Sipariş – 0384 215 2502"
-  description="Nevşehir'in en lezzetli çiğköftecisi Oses'te sipariş ver! 2000 Evler, üniversiteye 2 dk. Her gün 11:00-02:00. 0384 215 2502"
+  title="Oses Çiğ Köfte Nevşehir | Nevşehir Çiğ Köfte Sipariş – 0384 215 2502"
+  description="Nevşehir'in en lezzetli çiğ köftecisi Oses'te sipariş ver! 2000 Evler, üniversiteye 2 dk. Her gün 11:00-02:00. 0384 215 2502"
   canonical="https://osesnevsehir.com"
 >
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Oses Çiğköfte Ana Sayfa">
-        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte Nevşehir" />
+      <a href="/" class="logo" aria-label="Oses Çiğ Köfte Ana Sayfa">
+        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte Nevşehir" />
       </a>
       <details class="mobile-menu">
         <summary aria-label="Menüyü aç">
@@ -61,7 +61,7 @@ function waLink(urunAd: string) {
           <span class="badge badge-red">⭐ 4.8 Google Puanı</span>
           <span class="badge badge-amber">🕐 11:00 – 02:00 Açık</span>
         </div>
-        <h1 class="hero-h1">Nevşehir'de Çiğköfte <em>Sipariş Vermenin</em> Tek Doğru Adresi</h1>
+        <h1 class="hero-h1">Nevşehir'de Çiğ Köfte <em>Sipariş Vermenin</em> Tek Doğru Adresi</h1>
         <p class="hero-sub">2000 Evler'de, üniversiteye yürüme mesafesinde. Taze malzeme, uygun fiyat, hızlı teslimat.</p>
         <div class="hero-cta">
           <a href={`tel:${TEL}`} class="btn btn-primary btn-lg">📞 Hemen Ara – {TEL_DISPLAY}</a>
@@ -71,10 +71,11 @@ function waLink(urunAd: string) {
           <span>✅ Günlük taze malzeme</span>
           <span>✅ Vegan & vejetaryen</span>
           <span>✅ Hızlı teslimat</span>
+          <span>✅ Bol Yeşillik & İkram</span>
         </div>
       </div>
       <div class="hero-visual animate-fade-up delay-2">
-        <img class="hero-banner-image" src="/images/banner-ozel.jpg" alt="Oses Çiğköfte özel kampanya bannerı" loading="eager" />
+        <img class="hero-banner-image" src="/images/banner-ozel.jpg" alt="Oses Çiğ Köfte özel kampanya bannerı" loading="eager" />
       </div>
     </div>
   </section>
@@ -135,12 +136,13 @@ function waLink(urunAd: string) {
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-info">
-        <div class="footer-logo"><img class="footer-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte" /></div>
+        <div class="footer-logo"><img class="footer-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte" /></div>
+        <div class="footer-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.6!2d34.724!3d38.624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM3JzI2LjQiTiAzNMKwNDMnMjYuNCJF!5e0!3m2!1str!2str!4v1" width="100%" height="260" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Oses Çiğ Köfte Konumu"></iframe>
+        </div>
         <ul class="footer-list">
           <li><strong>📍 Adres</strong><br />2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13, 50100 Nevşehir</li>
           <li><strong>📞 Tel & WhatsApp</strong><br /><a href={`tel:${TEL}`}>{TEL_DISPLAY}</a></li>
-          <li><strong>✉️ E-posta</strong><br /><a href="mailto:osesnew50@gmail.com">osesnew50@gmail.com</a></li>
-          <li><strong>🌐 Web Sitesi</strong><br /><a href="https://osesnevsehir.com/" target="_blank" rel="noopener">osesnevsehir.com</a></li>
           <li><strong>🕐 Çalışma Saatleri</strong><br />Her Gün: 11:00 – 02:00</li>
         </ul>
         <div class="footer-social">
@@ -158,13 +160,10 @@ function waLink(urunAd: string) {
           <a href="/hakkimizda">Hakkımızda & Sertifikalar</a>
         </div>
       </div>
-      <div class="footer-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.6!2d34.724!3d38.624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM3JzI2LjQiTiAzNMKwNDMnMjYuNCJF!5e0!3m2!1str!2str!4v1" width="100%" height="260" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Oses Çiğköfte Konumu"></iframe>
-      </div>
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>© {new Date().getFullYear()} Oses Çiğköfte Nevşehir</p>
+        <p>© {new Date().getFullYear()} Oses Çiğ Köfte Nevşehir</p>
       </div>
     </div>
   </footer>
@@ -220,7 +219,7 @@ function waLink(urunAd: string) {
   .menu-footer { display:flex; flex-direction:column; gap:.5rem; margin-top:.25rem; }
   .menu-fiyat { font-size:1.4rem; font-weight:900; color:var(--col-primary); }
   .site-footer { background:#160b06; color:#e8ddd5; padding-top:2.5rem; }
-  .footer-grid { display:grid; grid-template-columns:minmax(0,.95fr) minmax(360px,1.05fr); gap:2.5rem; align-items:start; padding-bottom:2rem; }
+  .footer-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:1.5rem; align-items:start; padding-bottom:2rem; max-width:860px; }
   .footer-info { display:flex; flex-direction:column; gap:1rem; }
   .footer-logo { display:flex; align-items:center; gap:.5rem; }
   .footer-logo-image { width:126px; height:48px; object-fit:contain; border-radius:8px; }
@@ -239,4 +238,34 @@ function waLink(urunAd: string) {
   .wa-float { position:fixed; bottom:1.5rem; right:1.5rem; z-index:999; background:var(--col-wa); color:#fff; border-radius:999px; padding:.75rem 1.25rem .75rem 1rem; display:flex; align-items:center; gap:.5rem; box-shadow:var(--shadow-wa); animation:pulse-ring 2s infinite; font-weight:800; font-size:.9rem; }
   @media (max-width:768px) { .site-header { padding-block:.45rem; } .header-inner { flex-wrap:nowrap; justify-content:space-between; gap:.75rem; } .site-logo-image { width:158px; height:62px; } .header-nav,.header-actions { display:none; } .mobile-menu { display:block; position:relative; margin-left:auto; flex-shrink:0; } .mobile-menu summary { width:48px; height:48px; display:grid; place-content:center; gap:5px; border-radius:8px; background:rgba(255,255,255,.92); border:1px solid rgba(255,255,255,.72); box-shadow:var(--shadow-sm); cursor:pointer; list-style:none; } .mobile-menu summary::-webkit-details-marker { display:none; } .mobile-menu summary span { width:22px; height:2px; border-radius:999px; background:var(--col-text); transition:var(--transition); } .mobile-menu[open] summary span:nth-child(1) { transform:translateY(7px) rotate(45deg); } .mobile-menu[open] summary span:nth-child(2) { opacity:0; } .mobile-menu[open] summary span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); } .mobile-menu nav { position:absolute; top:calc(100% + .7rem); right:0; width:min(240px, calc(100vw - 2.5rem)); padding:.5rem; background:#fff; border:1px solid rgba(142,198,63,.24); border-radius:8px; box-shadow:var(--shadow-lg); display:grid; gap:.25rem; z-index:200; } .mobile-menu nav a { padding:.85rem 1rem; border-radius:8px; color:var(--col-text); font-weight:900; } .mobile-menu nav a:hover { background:#fff8f0; color:var(--col-primary); } .hero-inner { grid-template-columns:1fr; } .hero-banner-image { border-radius:14px; } .footer-grid { grid-template-columns:1fr; } .footer-list { grid-template-columns:1fr; } }
   @media (max-width:480px) { .hero-cta { flex-direction:column; } .hero-cta .btn { width:100%; justify-content:center; } .wa-float-label { display:none; } .wa-float { padding:1rem; border-radius:50%; } }
+  @media (max-width:768px) {
+    .site-header { padding-block:.7rem; }
+    .logo { padding:.34rem .46rem; background:#fff; border:1px solid rgba(255,255,255,.78); border-radius:14px; box-shadow:0 10px 22px rgba(26,18,11,.12); }
+    .site-logo-image { width:176px; height:68px; border-radius:10px; }
+    .mobile-menu summary { width:54px; height:54px; gap:6px; border-radius:13px; background:#fff; border:1px solid rgba(26,18,11,.08); box-shadow:0 10px 22px rgba(26,18,11,.14); }
+    .mobile-menu summary span { width:25px; height:3px; background:#1a120b; }
+    .mobile-menu[open] summary span:nth-child(1) { transform:translateY(9px) rotate(45deg); }
+    .mobile-menu[open] summary span:nth-child(3) { transform:translateY(-9px) rotate(-45deg); }
+    .hero { padding-block:3rem 2.4rem; }
+    .hero-content, .hero-sub { max-width:none; }
+    .hero-content, .hero-h1, .hero-sub, .hero-cta, .hero-trust { text-align:center; }
+    .hero-badges, .hero-cta { justify-content:center; }
+    .hero-h1 { font-size:clamp(2rem,8vw,2.45rem); }
+    .hero-sub { margin-inline:auto; }
+    .hero-trust { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; align-items:stretch; }
+    .hero-trust span { display:flex; align-items:center; justify-content:center; min-height:48px; padding:.65rem .5rem; background:rgba(255,255,255,.72); border:1px solid rgba(142,198,63,.22); border-radius:10px; font-weight:700; line-height:1.25; }
+    .footer-grid { display:block; max-width:760px; }
+    .footer-info { gap:1.1rem; }
+    .footer-logo { justify-content:center; }
+    .footer-map iframe { height:240px; }
+    .footer-list { grid-template-columns:1fr; }
+    .footer-list li { min-height:auto; text-align:center; padding:1rem; }
+    .footer-social { justify-content:center; }
+    .footer-bottom-links { text-align:center; }
+    .footer-bottom .container { justify-content:center; text-align:center; }
+  }
+  @media (max-width:480px) {
+    .site-logo-image { width:164px; height:62px; }
+    .hero-trust { grid-template-columns:repeat(2,minmax(0,1fr)); font-size:.78rem; }
+  }
 </style>

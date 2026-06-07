@@ -5,28 +5,28 @@
 export const adsKeywords = [
   {
     slug: "nevsehir-yemek-siparis",
-    title: "Nevşehir Yemek Sipariş | Oses Çiğköfte – Kapıya Kadar",
+    title: "Nevşehir Yemek Sipariş | Oses Çiğ Köfte – Kapıya Kadar",
     h1: "Nevşehir'de Yemek Sipariş Vermenin En Lezzetli Yolu",
     description:
-      "Nevşehir yemek sipariş için Oses Çiğköfte'yi ara! Taze çiğköfte dürüm, vegan seçenekler ve hızlı teslimat. 0384 215 2502",
+      "Nevşehir yemek sipariş için Oses Çiğ Köfte'yi ara! Taze çiğ köfte dürüm, vegan seçenekler ve hızlı teslimat. 0384 215 2502",
   },
   {
     slug: "nevsehir-durum-siparis",
-    title: "Nevşehir Dürüm Sipariş | Oses Çiğköfte – Taze & Hızlı",
+    title: "Nevşehir Dürüm Sipariş | Oses Çiğ Köfte – Taze & Hızlı",
     h1: "Nevşehir'in En Lezzetli Dürümü Kapıda!",
     description:
-      "Nevşehir dürüm sipariş için Oses Çiğköfte'yi tercih et. Taze malzeme, doyurucu porsiyon, uygun fiyat. Hemen ara: 0384 215 2502",
+      "Nevşehir dürüm sipariş için Oses Çiğ Köfte'yi tercih et. Taze malzeme, doyurucu porsiyon, uygun fiyat. Hemen ara: 0384 215 2502",
   },
   {
     slug: "cigkofte",
-    title: "Çiğköfte Nevşehir | Oses – Günlük Taze Çiğköfte",
-    h1: "Nevşehir'de Günlük Taze Çiğköfte Deneyimi",
+    title: "Çiğ Köfte Nevşehir | Oses – Günlük Taze Çiğ Köfte",
+    h1: "Nevşehir'de Günlük Taze Çiğ Köfte Deneyimi",
     description:
-      "En taze çiğköfte için Oses'e gel ya da sipariş ver. Nevşehir'in en sevilen çiğköftecisi. 0384 215 2502",
+      "En taze çiğ köfte için Oses'e gel ya da sipariş ver. Nevşehir'in en sevilen çiğ köftecisi. 0384 215 2502",
   },
   {
     slug: "cig-kofte-nevsehir",
-    title: "Çiğ Köfte Nevşehir | Oses Çiğköfte – 2000 Evler",
+    title: "Çiğ Köfte Nevşehir | Oses Çiğ Köfte – 2000 Evler",
     h1: "Nevşehir'de Çiğ Köfte Arayanların Adresi: Oses",
     description:
       "Çiğ köfte Nevşehir aramasında ilk adres Oses! 2000 Evler'de, üniversiteye yakın, uygun fiyatlı. Ara: 0384 215 2502",
@@ -40,17 +40,17 @@ export const adsKeywords = [
   },
   {
     slug: "oses-2000-evler-universite",
-    title: "Oses Çiğköfte – 2000 Evler & Üniversite Yanı | Nevşehir",
-    h1: "Üniversite Yanında, 2000 Evler'in Kalbinde: Oses Çiğköfte",
+    title: "Oses Çiğ Köfte – 2000 Evler & Üniversite Yanı | Nevşehir",
+    h1: "Üniversite Yanında, 2000 Evler'in Kalbinde: Oses Çiğ Köfte",
     description:
-      "Oses Çiğköfte, Nevşehir Üniversitesi'ne yürüme mesafesinde. 2000 Evler'de hızlı sipariş, uygun fiyat. 0384 215 2502",
+      "Oses Çiğ Köfte, Nevşehir Üniversitesi'ne yürüme mesafesinde. 2000 Evler'de hızlı sipariş, uygun fiyat. 0384 215 2502",
   },
   {
     slug: "nevsehir-universitesi-ogrencilerine-ozel-indirim",
-    title: "Nevşehir Üniversitesi Öğrencilerine Özel İndirim | Oses Çiğköfte",
-    h1: "Nevşehir Üniversitesi Öğrencilerine Özel İndirimli Çiğköfte Dürüm!",
+    title: "Nevşehir Üniversitesi Öğrencilerine Özel İndirim | Oses Çiğ Köfte",
+    h1: "Nevşehir Üniversitesi Öğrencilerine Özel İndirimli Çiğ Köfte Dürüm!",
     description:
-      "Öğrenci misin? Oses Çiğköfte'de sana özel kampanyalar seni bekliyor. Üniversite'ye 2 dakika. Hemen ara: 0384 215 2502",
+      "Öğrenci misin? Oses Çiğ Köfte'de sana özel kampanyalar seni bekliyor. Üniversite'ye 2 dakika. Hemen ara: 0384 215 2502",
   },
 ];
 

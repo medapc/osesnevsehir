@@ -1,3 +1,5 @@
+// Güncel restoran fiyat listesi bu dosyadaki `price` alanlarından yönetilir.
+// Yeni fiyat geldiğinde ilgili ürünün `price` değerini güncellemek yeterlidir.
 export const menuCategories = [
   {
     id: "cig-kofte-durum",

@@ -5,7 +5,7 @@ import { flatMenuItemCount, menuCategories } from "../data/fullMenu.js";
 const TEL = "03842152502";
 const TEL_DISPLAY = "0384 215 2502";
 const WA_BASE = "https://wa.me/903842152502";
-const WA_GENEL = `${WA_BASE}?text=Merhaba,%20sipari%C5%9F%20vermek%20istiyorum.`;
+const WA_GENEL = `${WA_BASE}?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden sipariş vermek istiyorum.")}`;
 
 const iconMap = {
   Star: "★",
@@ -20,7 +20,7 @@ const iconMap = {
 };
 
 function waLink(itemName) {
-  return `${WA_BASE}?text=${encodeURIComponent(`Merhaba, ${tr(itemName)} sipariş vermek istiyorum.`)}`;
+  return `${WA_BASE}?text=${encodeURIComponent(`Merhaba, osesnevsehir.com üzerinden ${tr(itemName)} siparişi vermek istiyorum.`)}`;
 }
 
 function productImage(itemName = "", categoryId = "") {
@@ -133,14 +133,14 @@ function tr(value = "") {
 ---
 
 <BaseLayout
-  title="Menü | Oses Çiğköfte Nevşehir Üniversite"
-  description="Oses Çiğköfte Nevşehir Üniversite güncel menüsü: çiğ köfte dürümler, fırsat menüleri, tatlılar, dondurmalar, soslar ve içecekler."
+  title="Menü | Oses Çiğ Köfte Nevşehir Üniversite"
+  description="Oses Çiğ Köfte Nevşehir Üniversite güncel menüsü: çiğ köfte dürümler, fırsat menüleri, tatlılar, dondurmalar, soslar ve içecekler."
   canonical="https://osesnevsehir.com/menu"
 >
   <header class="site-header">
     <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Oses Çiğköfte Ana Sayfa">
-        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte Nevşehir" />
+      <a href="/" class="logo" aria-label="Oses Çiğ Köfte Ana Sayfa">
+        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte Nevşehir" />
       </a>
       <details class="mobile-menu">
         <summary aria-label="Menüyü aç">
@@ -170,7 +170,7 @@ function tr(value = "") {
     <section class="menu-hero">
       <div class="container menu-hero-inner">
         <p class="menu-eyebrow">Menümüzde</p>
-        <h1>Oses Çiğköfte Menüleri</h1>
+        <h1>Oses Çiğ Köfte Menüleri</h1>
         <p class="menu-lead">
           Dürümden kiloluk çiğ köfteye, tatlıdan içeceğe kadar {flatMenuItemCount} ürünlük güncel liste.
           Sipariş için ürünü seçip WhatsApp üzerinden bize yazabilirsiniz.
@@ -251,7 +251,7 @@ function tr(value = "") {
   <footer class="menu-footer">
     <div class="container menu-footer-inner">
       <div>
-        <img class="footer-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte" />
+        <img class="footer-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte" />
         <p>2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13, 50100 Merkez/Nevşehir</p>
       </div>
       <div class="menu-footer-actions">
@@ -555,5 +555,44 @@ function tr(value = "") {
   .category-pill { width: 100%; justify-content: center; }
   .menu-card-grid,
   .menu-card-grid--compact { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .site-header { padding-block: .7rem; }
+  .logo {
+    padding: .34rem .46rem;
+    background: #fff;
+    border: 1px solid rgba(255,255,255,.78);
+    border-radius: 14px;
+    box-shadow: 0 10px 22px rgba(26,18,11,.12);
+  }
+  .site-logo-image {
+    width: 176px;
+    height: 68px;
+    border-radius: 10px;
+  }
+  .mobile-menu summary {
+    width: 54px;
+    height: 54px;
+    gap: 6px;
+    border-radius: 13px;
+    background: #fff;
+    border: 1px solid rgba(26,18,11,.08);
+    box-shadow: 0 10px 22px rgba(26,18,11,.14);
+  }
+  .mobile-menu summary span {
+    width: 25px;
+    height: 3px;
+    background: #1a120b;
+  }
+  .mobile-menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+}
+
+@media (max-width: 480px) {
+  .site-logo-image {
+    width: 164px;
+    height: 62px;
+  }
 }
 </style>

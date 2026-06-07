@@ -21,13 +21,13 @@ const { kw } = Astro.props;
 const TEL = "03842152502";
 const TEL_DISPLAY = "0384 215 2502";
 const WA_BASE = "https://wa.me/903842152502";
-const WA_GENEL = `${WA_BASE}?text=Merhaba,%20sipariş%20vermek%20istiyorum.`;
+const WA_GENEL = `${WA_BASE}?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden sipariş vermek istiyorum.")}`;
 const MAPS = "https://share.google/U463aknl3M19b6Wei";
 
 // WhatsApp mesajı – ürüne özel
 function waLink(urunAd: string) {
   const msg = encodeURIComponent(
-    `Merhaba, ${urunAd} sipariş vermek istiyorum.`
+    `Merhaba, osesnevsehir.com üzerinden ${urunAd} siparişi vermek istiyorum.`
   );
   return `${WA_BASE}?text=${msg}`;
 }
@@ -40,8 +40,8 @@ function waLink(urunAd: string) {
   <header class="site-header">
     <div class="container header-inner">
       <!-- Logo -->
-      <a href="/" class="logo" aria-label="Oses Çiğköfte Ana Sayfa">
-        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte Nevşehir" />
+      <a href="/" class="logo" aria-label="Oses Çiğ Köfte Ana Sayfa">
+        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte Nevşehir" />
       </a>
 
       <details class="mobile-menu">
@@ -107,10 +107,11 @@ function waLink(urunAd: string) {
           <span>✅ Günlük taze malzeme</span>
           <span>✅ Vegan & vejetaryen</span>
           <span>✅ Hızlı teslimat</span>
+          <span>✅ Bol Yeşillik & İkram</span>
         </div>
       </div>
       <div class="hero-visual animate-fade-up delay-2">
-        <img class="hero-banner-image" src="/images/banner-ozel.jpg" alt="Oses Çiğköfte özel kampanya bannerı" loading="eager" />
+        <img class="hero-banner-image" src="/images/banner-ozel.jpg" alt="Oses Çiğ Köfte özel kampanya bannerı" loading="eager" />
       </div>
     </div>
   </section>
@@ -252,7 +253,22 @@ function waLink(urunAd: string) {
       <!-- İletişim Bilgileri -->
       <div class="footer-info">
         <div class="footer-logo">
-          <img class="footer-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte" />
+          <img class="footer-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte" />
+        </div>
+        <div class="footer-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.6!2d34.724!3d38.624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM3JzI2LjQiTiAzNMKwNDMnMjYuNCJF!5e0!3m2!1str!2str!4v1"
+            width="100%"
+            height="260"
+            style="border:0; border-radius:12px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Oses Çiğ Köfte Konumu"
+          ></iframe>
+          <a href={MAPS} target="_blank" rel="noopener" class="btn btn-outline footer-map-link">
+            🗺️ Google Haritalar'da Aç
+          </a>
         </div>
         <ul class="footer-list">
           <li>
@@ -268,14 +284,6 @@ function waLink(urunAd: string) {
             <strong>🕐 Çalışma Saatleri</strong><br />
             Her Gün: 11:00 – 02:00
           </li>
-          <li>
-            <strong>✉️ E-posta</strong><br />
-            <a href="mailto:osesnew50@gmail.com">osesnew50@gmail.com</a>
-          </li>
-          <li>
-            <strong>🌐 Web Sitesi</strong><br />
-            <a href="https://osesnevsehir.com/" target="_blank" rel="noopener">osesnevsehir.com</a>
-          </li>
         </ul>
         <div class="footer-social">
           <a href="https://www.instagram.com/osesnevsehir" target="_blank" rel="noopener" aria-label="Instagram">
@@ -290,27 +298,11 @@ function waLink(urunAd: string) {
         </div>
       </div>
 
-      <!-- Google Harita Embed -->
-      <div class="footer-map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.6!2d34.724!3d38.624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM3JzI2LjQiTiAzNMKwNDMnMjYuNCJF!5e0!3m2!1str!2str!4v1"
-          width="100%"
-          height="260"
-          style="border:0; border-radius:12px;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Oses Çiğköfte Konumu"
-        ></iframe>
-        <a href={MAPS} target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:.75rem; width:100%; justify-content:center; display:flex;">
-          🗺️ Google Haritalar'da Aç
-        </a>
-      </div>
     </div>
 
     <div class="footer-bottom">
       <div class="container">
-        <p>© {new Date().getFullYear()} Oses Çiğköfte Nevşehir · Tüm hakları saklıdır.</p>
+        <p>© {new Date().getFullYear()} Oses Çiğ Köfte Nevşehir · Tüm hakları saklıdır.</p>
         <a href="/hakkimizda">Hakkımızda & Sertifikalar</a>
       </div>
     </div>
@@ -592,10 +584,11 @@ function waLink(urunAd: string) {
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(0, .95fr) minmax(360px, 1.05fr);
-  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
   align-items: start;
   padding-bottom: 2rem;
+  max-width: 860px;
 }
 .footer-info {
   display: flex;
@@ -656,6 +649,12 @@ function waLink(urunAd: string) {
 }
 .footer-map .btn {
   border-radius: 8px;
+}
+.footer-map-link {
+  margin-top: .75rem;
+  width: 100%;
+  justify-content: center;
+  display: flex;
 }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,.1);
@@ -761,5 +760,96 @@ function waLink(urunAd: string) {
   .hero-cta .btn { width: 100%; justify-content: center; }
   .wa-float-label { display: none; }
   .wa-float { padding: 1rem; border-radius: 50%; }
+}
+
+@media (max-width: 768px) {
+  .site-header { padding-block: .7rem; }
+  .logo {
+    padding: .34rem .46rem;
+    background: #fff;
+    border: 1px solid rgba(255,255,255,.78);
+    border-radius: 14px;
+    box-shadow: 0 10px 22px rgba(26,18,11,.12);
+  }
+  .site-logo-image {
+    width: 176px;
+    height: 68px;
+    border-radius: 10px;
+  }
+  .mobile-menu summary {
+    width: 54px;
+    height: 54px;
+    gap: 6px;
+    border-radius: 13px;
+    background: #fff;
+    border: 1px solid rgba(26,18,11,.08);
+    box-shadow: 0 10px 22px rgba(26,18,11,.14);
+  }
+  .mobile-menu summary span {
+    width: 25px;
+    height: 3px;
+    background: #1a120b;
+  }
+  .mobile-menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  .hero { padding-block: 3rem 2.4rem; }
+  .hero-content,
+  .hero-sub { max-width: none; }
+  .hero-content,
+  .hero-h1,
+  .hero-sub,
+  .hero-cta,
+  .hero-trust { text-align: center; }
+  .hero-badges,
+  .hero-cta { justify-content: center; }
+  .hero-h1 { font-size: clamp(2rem, 8vw, 2.45rem); }
+  .hero-sub { margin-inline: auto; }
+  .hero-trust {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+    align-items: stretch;
+  }
+  .hero-trust span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: .65rem .5rem;
+    background: rgba(255,255,255,.72);
+    border: 1px solid rgba(142,198,63,.22);
+    border-radius: 10px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .footer-grid {
+    display: block;
+    max-width: 760px;
+  }
+  .footer-info { gap: 1.1rem; }
+  .footer-logo { justify-content: center; }
+  .footer-map iframe { height: 240px; }
+  .footer-list { grid-template-columns: 1fr; }
+  .footer-list li {
+    min-height: auto;
+    text-align: center;
+    padding: 1rem;
+  }
+  .footer-social { justify-content: center; }
+  .footer-bottom .container {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo-image {
+    width: 164px;
+    height: 62px;
+  }
+  .hero-trust {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    font-size: .78rem;
+  }
 }
 </style>

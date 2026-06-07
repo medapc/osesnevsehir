@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const TEL = "03842152502";
 const TEL_DISPLAY = "0384 215 2502";
-const WA_GENEL = "https://wa.me/903842152502?text=Merhaba,%20sipariş%20vermek%20istiyorum.";
+const WA_GENEL = `https://wa.me/903842152502?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden sipariş vermek istiyorum.")}`;
 
 // Sertifikalar dizisi – public/sertifikalar/ klasörüne JPG yükleyin
 // Örnek isimlendirme: gidalama-sertifikasi.jpg, hijyen-belgesi.jpg vb.
@@ -45,8 +45,8 @@ const sertifikalar = [
 ---
 
 <BaseLayout
-  title="Hakkımızda & Sertifikalar | Oses Çiğköfte Nevşehir"
-  description="Oses Çiğköfte hakkında bilgi edinin. Gıda güvenliği sertifikalarımız, misyonumuz ve kalite taahhütlerimiz. Nevşehir'in güvenilir çiğköftecisi."
+  title="Hakkımızda & Sertifikalar | Oses Çiğ Köfte Nevşehir"
+  description="Oses Çiğ Köfte hakkında bilgi edinin. Gıda güvenliği sertifikalarımız, misyonumuz ve kalite taahhütlerimiz. Nevşehir'in güvenilir çiğ köftecisi."
   canonical="https://osesnevsehir.com/hakkimizda"
 >
 
@@ -54,7 +54,7 @@ const sertifikalar = [
   <header class="mini-header">
     <div class="container mini-header-inner">
       <a href="/" class="logo" aria-label="Ana Sayfa">
-        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğköfte" />
+        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte" />
       </a>
       <details class="mobile-menu">
         <summary aria-label="Menüyü aç">
@@ -82,10 +82,10 @@ const sertifikalar = [
     <div class="container">
       <div class="about-hero-content">
         <span class="badge badge-red">🌯 Bizim Hikayemiz</span>
-        <h1>Nevşehir'de Çiğköftenin<br /><em>Doğru Adresi</em></h1>
+        <h1>Nevşehir'de Çiğ Köftenin<br /><em>Doğru Adresi</em></h1>
         <p>
-          Oses Çiğköfte olarak yıllardan beri Nevşehir'de taze, lezzetli ve uygun fiyatlı
-          çiğköfte dürüm sunuyoruz. 2000 Evler'de, üniversiteye yürüme mesafesinde, her
+          Oses Çiğ Köfte olarak yıllardan beri Nevşehir'de taze, lezzetli ve uygun fiyatlı
+          çiğ köfte dürüm sunuyoruz. 2000 Evler'de, üniversiteye yürüme mesafesinde, her
           gün 11:00'den 02:00'a kadar hizmetinizdeyiz.
         </p>
       </div>
@@ -128,7 +128,7 @@ const sertifikalar = [
         <div class="value-card">
           <div class="value-icon">⭐</div>
           <h3>4.8 Google Puanı</h3>
-          <p>124'ten fazla gerçek müşteri yorumuyla Nevşehir'in en yüksek puanlı çiğköftecisi.</p>
+          <p>124'ten fazla gerçek müşteri yorumuyla Nevşehir'in en yüksek puanlı çiğ köftecisi.</p>
         </div>
       </div>
     </div>
@@ -204,7 +204,7 @@ const sertifikalar = [
   <!-- ── Footer Minimal ── -->
   <footer class="mini-footer">
     <div class="container mini-footer-inner">
-      <p>© {new Date().getFullYear()} Oses Çiğköfte Nevşehir · 2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13</p>
+      <p>© {new Date().getFullYear()} Oses Çiğ Köfte Nevşehir · 2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13</p>
       <a href="/">Ana Sayfaya Dön</a>
     </div>
   </footer>
@@ -424,5 +424,44 @@ const sertifikalar = [
     font-weight: 900;
   }
   .mobile-menu nav a:hover { background: #fff8f0; color: var(--col-primary); }
+}
+
+@media (max-width: 768px) {
+  .mini-header { padding-block: .7rem; }
+  .logo {
+    padding: .34rem .46rem;
+    background: #fff;
+    border: 1px solid rgba(255,255,255,.78);
+    border-radius: 14px;
+    box-shadow: 0 10px 22px rgba(26,18,11,.12);
+  }
+  .site-logo-image {
+    width: 176px;
+    height: 68px;
+    border-radius: 10px;
+  }
+  .mobile-menu summary {
+    width: 54px;
+    height: 54px;
+    gap: 6px;
+    border-radius: 13px;
+    background: #fff;
+    border: 1px solid rgba(26,18,11,.08);
+    box-shadow: 0 10px 22px rgba(26,18,11,.14);
+  }
+  .mobile-menu summary span {
+    width: 25px;
+    height: 3px;
+    background: #1a120b;
+  }
+  .mobile-menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+}
+
+@media (max-width: 480px) {
+  .site-logo-image {
+    width: 164px;
+    height: 62px;
+  }
 }
 </style>

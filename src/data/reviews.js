@@ -7,7 +7,7 @@ export const reviews = [
     isim: "Ahmet Y.",
     yildiz: 5,
     yorum:
-      "Nevşehir'de çiğköfte konusunda gerçekten en iyi yer burası. Her gün geliyorum, hem lezzetli hem çok uygun fiyatlı. Öğrencilere kesinlikle tavsiye ederim!",
+      "Nevşehir'de çiğ köfte konusunda gerçekten en iyi yer burası. Her gün geliyorum, hem lezzetli hem çok uygun fiyatlı. Öğrencilere kesinlikle tavsiye ederim!",
     tarih: "2 gün önce",
     avatar: "AY",
   },
@@ -25,7 +25,7 @@ export const reviews = [
     isim: "Mehmet S.",
     yildiz: 5,
     yorum:
-      "Üniversiteye çok yakın, arayınca hemen karşılıyorlar. Çiğköfte tazeliğinden ödün vermiyor. 5 yıldır müşterisiyim.",
+      "Üniversiteye çok yakın, arayınca hemen karşılıyorlar. Çiğ köfte tazeliğinden ödün vermiyor. 5 yıldır müşterisiyim.",
     tarih: "3 gün önce",
     avatar: "MS",
   },
@@ -43,7 +43,7 @@ export const reviews = [
     isim: "Burak T.",
     yildiz: 4,
     yorum:
-      "Çiğköfte lezzeti 10/10. 2000 Evler'in bu bölgesinde bu kalitede yer bulmak zor. Özellikle öğrenci menüsü çok mantıklı.",
+      "Çiğ köfte lezzeti 10/10. 2000 Evler'in bu bölgesinde bu kalitede yer bulmak zor. Özellikle öğrenci menüsü çok mantıklı.",
     tarih: "2 hafta önce",
     avatar: "BT",
   },
