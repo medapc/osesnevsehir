@@ -12,34 +12,44 @@ const WA_GENEL = `https://wa.me/903842152502?text=${encodeURIComponent("Merhaba,
 // Örnek isimlendirme: gidalama-sertifikasi.jpg, hijyen-belgesi.jpg vb.
 const sertifikalar = [
   {
-    dosya: "/sertifikalar/gidalama-sertifikasi.jpg",
-    baslik: "Gıda Güvenliği Sertifikası",
-    aciklama: "Gıda Tarım ve Hayvancılık Bakanlığı onaylı",
+    dosya: "/sertifikalar/01.jpg",
+    baslik: "Kalite Belgesi",
+    aciklama: "Oses kalite standartlarını belgeleyen resmi evrak",
   },
   {
-    dosya: "/sertifikalar/hijyen-belgesi.jpg",
+    dosya: "/sertifikalar/02.jpg",
     baslik: "Hijyen Belgesi",
-    aciklama: "Sağlık Müdürlüğü tarafından verilmiştir",
+    aciklama: "Gıda üretim ve servis süreçleri için hijyen belgesi",
   },
   {
-    dosya: "/sertifikalar/isyeri-acma-ruhsati.jpg",
-    baslik: "İşyeri Açma ve Çalışma Ruhsatı",
-    aciklama: "Nevşehir Belediyesi tarafından onaylanmıştır",
+    dosya: "/sertifikalar/03.jpg",
+    baslik: "İşyeri Belgesi",
+    aciklama: "İşletme faaliyet ve uygunluk belgesi",
   },
   {
-    dosya: "/sertifikalar/helal-sertifikasi.jpg",
-    baslik: "Helal Gıda Sertifikası",
-    aciklama: "Tüm ürünlerimiz helal sertifikalıdır",
+    dosya: "/sertifikalar/04.jpg",
+    baslik: "Gıda Güvenliği Belgesi",
+    aciklama: "Gıda güvenliği süreçlerini destekleyen belge",
   },
   {
-    dosya: "/sertifikalar/vegan-dostu.jpg",
-    baslik: "Vegan Dostu Belge",
-    aciklama: "Bitkisel içerikli ürünlerimiz vegan sertifikalıdır",
+    dosya: "/sertifikalar/05.jpg",
+    baslik: "Ürün Standart Belgesi",
+    aciklama: "Ürün ve hizmet standartlarına ait belge",
   },
   {
-    dosya: "/sertifikalar/musteri-memnuniyet.jpg",
-    baslik: "Müşteri Memnuniyeti Ödülü",
-    aciklama: "Nevşehir en beğenilen yerel işletme ödülü",
+    dosya: "/sertifikalar/06.jpg",
+    baslik: "Uygunluk Belgesi",
+    aciklama: "İşletme uygunluk ve denetim belgesi",
+  },
+  {
+    dosya: "/sertifikalar/07.jpg",
+    baslik: "Denetim Belgesi",
+    aciklama: "İlgili süreçlere ait denetim belgesi",
+  },
+  {
+    dosya: "/sertifikalar/08.jpg",
+    baslik: "Yetki Belgesi",
+    aciklama: "İşletme ve marka kullanım süreçlerine ait belge",
   },
 ];
 ---
@@ -429,11 +439,11 @@ const sertifikalar = [
 @media (max-width: 768px) {
   .mini-header { padding-block: .7rem; }
   .logo {
-    padding: .34rem .46rem;
-    background: #fff;
-    border: 1px solid rgba(255,255,255,.78);
+    padding: .28rem .42rem;
+    background: rgba(142,198,63,.14);
+    border: 1.5px solid var(--col-primary);
     border-radius: 14px;
-    box-shadow: 0 10px 22px rgba(26,18,11,.12);
+    box-shadow: 0 10px 22px rgba(26,18,11,.10);
   }
   .site-logo-image {
     width: 176px;
@@ -453,6 +463,12 @@ const sertifikalar = [
     width: 25px;
     height: 3px;
     background: #1a120b;
+  }
+  .mobile-menu nav a {
+    font-weight: 700;
+    font-size: .95rem;
+    letter-spacing: 0;
+    padding: .8rem .9rem;
   }
   .mobile-menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
   .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }

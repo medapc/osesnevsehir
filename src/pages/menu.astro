@@ -560,11 +560,11 @@ function tr(value = "") {
 @media (max-width: 768px) {
   .site-header { padding-block: .7rem; }
   .logo {
-    padding: .34rem .46rem;
-    background: #fff;
-    border: 1px solid rgba(255,255,255,.78);
+    padding: .28rem .42rem;
+    background: rgba(142,198,63,.14);
+    border: 1.5px solid var(--col-primary);
     border-radius: 14px;
-    box-shadow: 0 10px 22px rgba(26,18,11,.12);
+    box-shadow: 0 10px 22px rgba(26,18,11,.10);
   }
   .site-logo-image {
     width: 176px;
@@ -584,6 +584,12 @@ function tr(value = "") {
     width: 25px;
     height: 3px;
     background: #1a120b;
+  }
+  .mobile-menu nav a {
+    font-weight: 700;
+    font-size: .95rem;
+    letter-spacing: 0;
+    padding: .8rem .9rem;
   }
   .mobile-menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
   .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }

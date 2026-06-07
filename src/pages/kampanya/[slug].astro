@@ -23,6 +23,7 @@ const TEL_DISPLAY = "0384 215 2502";
 const WA_BASE = "https://wa.me/903842152502";
 const WA_GENEL = `${WA_BASE}?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden sipariş vermek istiyorum.")}`;
 const MAPS = "https://share.google/U463aknl3M19b6Wei";
+const fiveStarReviews = reviews.filter((review) => review.yildiz === 5);
 
 // WhatsApp mesajı – ürüne özel
 function waLink(urunAd: string) {
@@ -90,7 +91,7 @@ function waLink(urunAd: string) {
           <span class="badge badge-red">⭐ 4.8 Google Puanı</span>
           <span class="badge badge-amber">🕐 11:00 – 02:00 Açık</span>
         </div>
-        <h1 class="hero-h1">{kw.h1}</h1>
+        <h1 class="hero-h1"><span class="hero-title-nowrap">Çiğ Köfte <em>Sipariş</em></span> Vermenin Tek Doğru Adresi</h1>
         <p class="hero-sub">
           2000 Evler'de, üniversiteye yürüme mesafesinde. Taze malzeme, uygun fiyat, hızlı teslimat.
         </p>
@@ -113,6 +114,27 @@ function waLink(urunAd: string) {
       <div class="hero-visual animate-fade-up delay-2">
         <img class="hero-banner-image" src="/images/banner-ozel.jpg" alt="Oses Çiğ Köfte özel kampanya bannerı" loading="eager" />
       </div>
+    </div>
+  </section>
+
+  <section class="rating-spotlight" aria-label="Google yorumları">
+    <div class="container rating-spotlight-inner">
+      <div class="rating-score-card">
+        <span class="rating-score">4.8</span>
+        <div>
+          <div class="rating-stars">★★★★★</div>
+          <strong>Google Puanı</strong>
+        </div>
+      </div>
+      <div class="rating-rotator">
+        {fiveStarReviews.map((review, index) => (
+          <p style={`--i:${index}; --total:${fiveStarReviews.length};`}>
+            “{review.yorum}”
+            <span>{review.isim}</span>
+          </p>
+        ))}
+      </div>
+      <a href={MAPS} target="_blank" rel="noopener" class="btn btn-outline rating-action">Tüm Yorumlarımız</a>
     </div>
   </section>
 
@@ -400,6 +422,7 @@ function waLink(urunAd: string) {
   line-height: 1.08;
 }
 .hero-h1 em { font-style: normal; color: var(--col-primary); }
+.hero-title-nowrap { white-space: nowrap; }
 .hero-sub {
   font-size: 1.05rem;
   color: var(--col-text-muted);
@@ -407,6 +430,21 @@ function waLink(urunAd: string) {
   max-width: 500px;
 }
 .hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.hero-cta .btn {
+  position: relative;
+  overflow: visible;
+}
+.hero-cta .btn::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  opacity: .28;
+  animation: ctaWave 1.9s ease-out infinite;
+  pointer-events: none;
+}
+.hero-cta .btn-wa::after { animation-delay: .45s; }
 .hero-trust { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: var(--col-text-muted); }
 .hero-trust span::before { content: ""; }
 
@@ -430,6 +468,65 @@ function waLink(urunAd: string) {
 }
 
 /* ── Popüler ── */
+.rating-spotlight {
+  background: #fffaf4;
+  padding-block: 1.35rem;
+  border-block: 1px solid rgba(230,51,18,.08);
+}
+.rating-spotlight-inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ecd9c8;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: var(--shadow-md);
+}
+.rating-score-card {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .65rem .85rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#fff8f0,#fdebd0);
+}
+.rating-score {
+  font-family: var(--font-display);
+  font-size: 2.45rem;
+  font-weight: 900;
+  color: var(--col-primary);
+  line-height: 1;
+}
+.rating-stars { color: #f59e0b; font-size: 1rem; letter-spacing: 1px; line-height: 1; }
+.rating-score-card strong { display: block; font-size: .78rem; color: var(--col-text); }
+.rating-rotator {
+  position: relative;
+  min-height: 54px;
+  overflow: hidden;
+}
+.rating-rotator p {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: reviewCycle calc(var(--total) * 4s) infinite;
+  animation-delay: calc(var(--i) * 4s);
+  color: var(--col-text-muted);
+  font-size: .92rem;
+  line-height: 1.35;
+}
+.rating-rotator span {
+  margin-top: .25rem;
+  color: var(--col-primary);
+  font-weight: 900;
+}
+.rating-action { justify-content: center; white-space: nowrap; }
+
 .populer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -598,7 +695,13 @@ function waLink(urunAd: string) {
 .footer-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: .5rem;
+  background: #8ec63f;
+  border-radius: 10px;
+  padding: .36rem .55rem;
+  width: max-content;
+  margin-inline: auto;
 }
 .footer-logo-image {
   width: 126px;
@@ -692,6 +795,16 @@ function waLink(urunAd: string) {
 }
 .wa-float:hover { background: var(--col-wa-dark); transform: scale(1.05); }
 
+@keyframes ctaWave {
+  0% { transform: scale(1); opacity: .34; }
+  70%, 100% { transform: scale(1.08, 1.28); opacity: 0; }
+}
+@keyframes reviewCycle {
+  0%, 8% { opacity: 0; transform: translateY(14px); }
+  12%, 28% { opacity: 1; transform: translateY(0); }
+  34%, 100% { opacity: 0; transform: translateY(-14px); }
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .site-header { padding-block: .45rem; }
@@ -765,11 +878,11 @@ function waLink(urunAd: string) {
 @media (max-width: 768px) {
   .site-header { padding-block: .7rem; }
   .logo {
-    padding: .34rem .46rem;
-    background: #fff;
-    border: 1px solid rgba(255,255,255,.78);
+    padding: .28rem .42rem;
+    background: rgba(142,198,63,.14);
+    border: 1.5px solid var(--col-primary);
     border-radius: 14px;
-    box-shadow: 0 10px 22px rgba(26,18,11,.12);
+    box-shadow: 0 10px 22px rgba(26,18,11,.10);
   }
   .site-logo-image {
     width: 176px;
@@ -789,6 +902,12 @@ function waLink(urunAd: string) {
     width: 25px;
     height: 3px;
     background: #1a120b;
+  }
+  .mobile-menu nav a {
+    font-weight: 700;
+    font-size: .95rem;
+    letter-spacing: 0;
+    padding: .8rem .9rem;
   }
   .mobile-menu[open] summary span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
   .mobile-menu[open] summary span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
@@ -822,6 +941,15 @@ function waLink(urunAd: string) {
     font-weight: 700;
     line-height: 1.25;
   }
+  .rating-spotlight { padding-block: 1rem; }
+  .rating-spotlight-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: .85rem;
+  }
+  .rating-score-card { justify-content: center; }
+  .rating-rotator { min-height: 84px; }
+  .rating-action { width: 100%; }
   .footer-grid {
     display: block;
     max-width: 760px;
