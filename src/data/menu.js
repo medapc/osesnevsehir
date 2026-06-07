@@ -58,6 +58,7 @@ export const menu = [
     id: 5,
     kategori: "Menü",
     ad: "Dürüm + Ayran Menü",
+    gramaj: "100 gram",
     fiyat: HOME_MENU_PRICES.durumAyranMenu,
     aciklama: "Orta dürüm + soğuk ayran, tam bir öğün",
     emoji: "🥤",
