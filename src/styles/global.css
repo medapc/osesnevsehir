@@ -150,6 +150,25 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; }
 .badge-amber { background: var(--col-accent); color: #1a120b; }
 .badge-green { background: var(--col-wa); color: #fff; }
 
+.footer-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .55rem .9rem;
+}
+.footer-pages strong {
+  width: 100%;
+  color: var(--col-accent);
+  font-size: .78rem;
+  text-transform: uppercase;
+}
+.footer-pages a {
+  color: var(--col-accent);
+  font-weight: 800;
+  font-size: .85rem;
+}
+.footer-pages a:hover { color: #fff; }
+
 /* ── Animasyonlar ── */
 @keyframes fadeUp {
   from { opacity:0; transform:translateY(20px); }

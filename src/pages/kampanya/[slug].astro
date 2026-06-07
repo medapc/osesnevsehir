@@ -52,16 +52,18 @@ function waLink(urunAd: string) {
           <span></span>
         </summary>
         <nav aria-label="Mobil menü">
-          <a href="/">Ana Sayfa</a>
+          <a href="/">Anasayfa</a>
           <a href="/menu">Menü</a>
-          <a href="/hakkimizda">Hakkımızda</a>
+          <a href="/kampanyalar">Kampanyalar</a>
+          <a href="#iletisim">İletişim</a>
         </nav>
       </details>
 
       <nav class="header-nav" aria-label="Ana menü">
-        <a href="/">Ana Sayfa</a>
+        <a href="/">Anasayfa</a>
         <a href="/menu">Menü</a>
-        <a href="/hakkimizda">Hakkımızda</a>
+        <a href="/kampanyalar">Kampanyalar</a>
+        <a href="#iletisim">İletişim</a>
       </nav>
 
       <!-- ── Hızlı Aksiyonlar ── -->
@@ -270,7 +272,7 @@ function waLink(urunAd: string) {
   <!-- ════════════════════════════════════════════
        6. FOOTER – Harita + Saatler + İletişim
   ════════════════════════════════════════════ -->
-  <footer class="site-footer">
+  <footer class="site-footer" id="iletisim">
     <div class="container footer-grid">
       <!-- İletişim Bilgileri -->
       <div class="footer-info">
@@ -325,7 +327,12 @@ function waLink(urunAd: string) {
     <div class="footer-bottom">
       <div class="container">
         <p>© {new Date().getFullYear()} Oses Çiğ Köfte Nevşehir · Tüm hakları saklıdır.</p>
-        <a href="/hakkimizda">Hakkımızda & Sertifikalar</a>
+        <nav class="footer-pages" aria-label="Footer sayfaları">
+          <a href="/">Anasayfa</a>
+          <a href="/menu">Menü</a>
+          <a href="/kampanyalar">Kampanyalar</a>
+          <a href="/hakkimizda">Hakkımızda & Sertifikalar</a>
+        </nav>
       </div>
     </div>
   </footer>
@@ -877,18 +884,46 @@ function waLink(urunAd: string) {
 
 @media (max-width: 768px) {
   .site-header { padding-block: .7rem; }
+  .header-inner {
+    justify-content: flex-start;
+    gap: .55rem;
+  }
   .logo {
-    padding: .28rem .42rem;
-    background: rgba(142,198,63,.14);
-    border: 1.5px solid var(--col-primary);
-    border-radius: 14px;
-    box-shadow: 0 10px 22px rgba(26,18,11,.10);
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
   .site-logo-image {
-    width: 176px;
-    height: 68px;
-    border-radius: 10px;
+    width: 110px;
+    height: 46px;
+    border-radius: 0;
   }
+  .mobile-menu { display: none !important; }
+  .header-nav {
+    display: flex !important;
+    flex: 1;
+    min-width: 0;
+    margin-left: 0;
+    justify-content: flex-end;
+    gap: .15rem;
+    background: rgba(255,255,255,.82);
+    border: 1px solid rgba(255,255,255,.58);
+    border-radius: 999px;
+    padding: .2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .header-nav::-webkit-scrollbar { display: none; }
+  .header-nav a {
+    flex: 0 0 auto;
+    padding: .46rem .52rem;
+    font-size: .72rem;
+    font-weight: 800;
+    color: var(--col-text);
+  }
+  .header-actions { display: none !important; }
   .mobile-menu summary {
     width: 54px;
     height: 54px;
@@ -972,9 +1007,10 @@ function waLink(urunAd: string) {
 
 @media (max-width: 480px) {
   .site-logo-image {
-    width: 164px;
-    height: 62px;
+    width: 96px;
+    height: 42px;
   }
+  .header-nav a { font-size: .68rem; padding: .43rem .44rem; }
   .hero-trust {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     font-size: .78rem;
