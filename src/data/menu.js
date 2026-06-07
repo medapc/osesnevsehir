@@ -1,11 +1,10 @@
 // src/data/menu.js
-// Ürünler UCUZDAN PAHALIYA sıralanmıştır — Google Ads kalite skoru & dönüşüm için kritik
-// Fiyatlar burada merkezi tutulur; güncel restoran fiyat listesi geldiğinde sadece bu sabitleri değiştirin.
+// Ana sayfa urunleri ve fiyatlari merkezi olarak burada tutulur.
 export const HOME_MENU_PRICES = {
   kucukDurum: 130,
-  ortaDurum: 130,
+  enfesDurum: 130,
   cigKofteTabak: 250,
-  buyukDurum: 175,
+  megaDurum: 175,
   durumAyranMenu: 170,
   durumIcecekMenu: 180,
   ikiliMenu: 289,
@@ -15,43 +14,45 @@ export const HOME_MENU_PRICES = {
 export const menu = [
   {
     id: 1,
-    kategori: "Çiğ Köfte",
+    kategori: "Çiğ Köfte Dürüm",
     ad: "Çiğ Köfte Dürüm (Küçük)",
     fiyat: HOME_MENU_PRICES.kucukDurum,
     aciklama: "İnce lavaş, taze çiğ köfte, limon ve nar ekşisi ile",
     emoji: "🌯",
     image: "/images/cigkofte-durum-1.jpg",
-    popüler: false,
+    populer: false,
   },
   {
     id: 2,
-    kategori: "Çiğ Köfte",
-    ad: "Çiğ Köfte Dürüm (Orta)",
-    fiyat: HOME_MENU_PRICES.ortaDurum,
-    aciklama: "Doyurucu porsiyon, bol malzeme, özel sos",
+    kategori: "Çiğ Köfte Dürüm",
+    ad: "Enfes Dürüm",
+    gramaj: "100 gram",
+    fiyat: HOME_MENU_PRICES.enfesDurum,
+    aciklama: "20\u20BA fark ile Doritos se\u00E7ene\u011Fi",
     emoji: "🌯",
     image: "/images/cigkofte-durum-2.jpg",
-    popüler: true,
+    populer: true,
   },
   {
     id: 3,
-    kategori: "Çiğ Köfte",
+    kategori: "Çiğ Köfte Porsiyon",
     ad: "Çiğ Köfte Tabak",
     fiyat: HOME_MENU_PRICES.cigKofteTabak,
     aciklama: "Taze yeşillikler, domates, limon ile servis",
     emoji: "🥗",
     image: "/images/cigkofte-porsiyon.jpg",
-    popüler: false,
+    populer: false,
   },
   {
     id: 4,
-    kategori: "Dürüm",
-    ad: "Çiğ Köfte Dürüm (Büyük)",
-    fiyat: HOME_MENU_PRICES.buyukDurum,
-    aciklama: "Ekstra dolgun, açlığa son veren boy",
+    kategori: "Çiğ Köfte Dürüm",
+    ad: "Mega Dürüm",
+    gramaj: "150 gram",
+    fiyat: HOME_MENU_PRICES.megaDurum,
+    aciklama: "20\u20BA fark ile Doritos se\u00E7ene\u011Fi",
     emoji: "🌯",
     image: "/images/cigkofte-durum-1.jpg",
-    popüler: true,
+    populer: true,
   },
   {
     id: 5,
@@ -61,7 +62,7 @@ export const menu = [
     aciklama: "Orta dürüm + soğuk ayran, tam bir öğün",
     emoji: "🥤",
     image: "/images/cigkofte-durum-2.jpg",
-    popüler: true,
+    populer: true,
   },
   {
     id: 6,
@@ -71,7 +72,7 @@ export const menu = [
     aciklama: "Büyük dürüm + seçtiğin içecek",
     emoji: "🥤",
     image: "/images/cigkofte-durum-1.jpg",
-    popüler: false,
+    populer: false,
   },
   {
     id: 7,
@@ -81,7 +82,7 @@ export const menu = [
     aciklama: "2x Büyük Dürüm + 2x İçecek, arkadaşına ısmarla",
     emoji: "👫",
     image: "/images/cigkofte-durum-2.jpg",
-    popüler: false,
+    populer: false,
   },
   {
     id: 8,
@@ -91,10 +92,10 @@ export const menu = [
     aciklama: "4x Dürüm + 4x İçecek, grup siparişi için ideal",
     emoji: "🎉",
     image: "/images/cigkofte-durum-1.jpg",
-    popüler: false,
+    populer: false,
   },
 ];
 
-export const populerler = menu.filter((item) => item.popüler);
+export const populerler = menu.filter((item) => item.populer);
 
 export default menu;
