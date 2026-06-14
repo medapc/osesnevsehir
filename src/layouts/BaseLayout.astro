@@ -84,6 +84,31 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
     gtag('js', new Date());
 
     gtag('config', 'G-HS4B73CV5F');
+    gtag('config', 'AW-16469055254');
+  </script>
+
+  <!-- Google Ads conversion tracking -->
+  <script is:inline>
+    const GADS_CONVERSION_ID = "AW-16469055254";
+    const GADS_CONVERSION_LABELS = {
+      phone: "TELEFON_CONVERSION_LABEL_BURAYA",
+    };
+
+    function trackGAdsConversion(label) {
+      if (typeof gtag !== "function" || !label) return;
+
+      gtag("event", "conversion", {
+        send_to: `${GADS_CONVERSION_ID}/${label}`,
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("[data-gads-conversion='phone']").forEach((phoneButton) => {
+        phoneButton.addEventListener("click", () => {
+          trackGAdsConversion(GADS_CONVERSION_LABELS.phone);
+        });
+      });
+    });
   </script>
 
   <!-- Favicon -->

@@ -68,7 +68,7 @@ function waLink(urunAd: string) {
 
       <!-- ── Hızlı Aksiyonlar ── -->
       <div class="header-actions">
-        <a href={`tel:${TEL}`} class="btn btn-outline hide-mobile">
+        <a href={`tel:${TEL}`} class="btn btn-outline hide-mobile" data-gads-conversion="phone">
           📞 {TEL_DISPLAY}
         </a>
         <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa">
@@ -98,7 +98,7 @@ function waLink(urunAd: string) {
           2000 Evler'de, üniversiteye yürüme mesafesinde. Taze malzeme, uygun fiyat, hızlı teslimat.
         </p>
         <div class="hero-cta">
-          <a href={`tel:${TEL}`} class="btn btn-primary btn-lg">
+          <a href={`tel:${TEL}`} class="btn btn-primary btn-lg" data-gads-conversion="phone">
             📞 Hemen Ara – {TEL_DISPLAY}
           </a>
           <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa btn-lg">
@@ -212,7 +212,7 @@ function waLink(urunAd: string) {
       <!-- Floating Sipariş CTA -->
       <div class="menu-cta">
         <p>Menüde aradığını bulamadın mı? Bizi ara, sana özel çözelim.</p>
-        <a href={`tel:${TEL}`} class="btn btn-primary btn-lg">
+        <a href={`tel:${TEL}`} class="btn btn-primary btn-lg" data-gads-conversion="phone">
           📞 {TEL_DISPLAY} – Hemen Ara
         </a>
       </div>
@@ -302,7 +302,7 @@ function waLink(urunAd: string) {
           </li>
           <li>
             <strong>📞 Telefon & WhatsApp</strong><br />
-            <a href={`tel:${TEL}`}>{TEL_DISPLAY}</a>
+            <a href={`tel:${TEL}`} data-gads-conversion="phone">{TEL_DISPLAY}</a>
           </li>
           <li>
             <strong>🕐 Çalışma Saatleri</strong><br />

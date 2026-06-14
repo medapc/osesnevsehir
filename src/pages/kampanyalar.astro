@@ -43,7 +43,7 @@ const campaigns = adsKeywords.map((item) => ({
         <a href="#iletisim">İletişim</a>
       </nav>
       <div class="header-actions">
-        <a href={`tel:${TEL}`} class="btn btn-outline hide-mobile">☎ {TEL_DISPLAY}</a>
+        <a href={`tel:${TEL}`} class="btn btn-outline hide-mobile" data-gads-conversion="phone">☎ {TEL_DISPLAY}</a>
         <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
       </div>
     </div>
@@ -81,7 +81,7 @@ const campaigns = adsKeywords.map((item) => ({
         <p>2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13, 50100 Merkez/Nevşehir</p>
       </div>
       <div class="campaigns-footer-actions">
-        <a href={`tel:${TEL}`} class="btn btn-outline">☎ {TEL_DISPLAY}</a>
+        <a href={`tel:${TEL}`} class="btn btn-outline" data-gads-conversion="phone">☎ {TEL_DISPLAY}</a>
         <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
       </div>
       <nav class="footer-pages" aria-label="Footer sayfaları">
