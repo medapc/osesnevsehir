@@ -12,6 +12,36 @@ const TEL_DISPLAY = "0384 215 2502";
 const WA_GENEL = `https://wa.me/903842152502?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden sipariş vermek istiyorum.")}`;
 const GOOGLE_REVIEWS_URL = "https://share.google/U463aknl3M19b6Wei";
 const fiveStarReviews = reviews.filter((review) => review.yildiz === 5);
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  name: "Oses Çiğ Köfte Nevşehir",
+  image: "https://osesnevsehir.com/assets/images/hero-bg.jpg",
+  "@id": "https://osesnevsehir.com",
+  url: "https://osesnevsehir.com",
+  telephone: "+903842152502",
+  priceRange: "$",
+  servesCuisine: "Çiğ Köfte, Dürüm",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "2000 Evler Mahallesi",
+    addressLocality: "Merkez",
+    addressRegion: "Nevşehir",
+    postalCode: "50300",
+    addressCountry: "TR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "38.6515",
+    longitude: "34.7012",
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    opens: "11:00",
+    closes: "02:00",
+  },
+};
 
 function waLink(urunAd: string) {
   return `https://wa.me/903842152502?text=${encodeURIComponent(`Merhaba, osesnevsehir.com üzerinden ${urunAd} siparişi vermek istiyorum.`)}`;
@@ -19,9 +49,10 @@ function waLink(urunAd: string) {
 ---
 
 <BaseLayout
-  title="Oses Çiğ Köfte Nevşehir | Nevşehir Çiğ Köfte Sipariş – 0384 215 2502"
-  description="Nevşehir'in en lezzetli çiğ köftecisi Oses'te sipariş ver! 2000 Evler, üniversiteye 2 dk. Her gün 11:00-02:00. 0384 215 2502"
+  title="Oses Çiğ Köfte Nevşehir | Paket Servis & Online Sipariş"
+  description="Nevşehir Oses Çiğ Köfte ile en lezzetli dürüm çeşitleri kapında! Öğrenci dostu fiyatlar, hızlı paket servis. 2000 Evler ve kampüse 2 dk. Hemen sipariş ver!"
   canonical="https://osesnevsehir.com"
+  schema={homeSchema}
 >
 
   <header class="site-header">
