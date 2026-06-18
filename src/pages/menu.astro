@@ -288,16 +288,27 @@ function tr(value = "") {
   align-items: center;
   gap: .25rem;
   margin-left: auto;
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(255,255,255,.7);
-  border-radius: 999px;
-  padding: .25rem;
+  background: rgba(255,255,255,.9);
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 10px;
+  padding: .28rem;
 }
-.header-nav a { padding: .68rem 1rem; border-radius: 999px; font-size: .94rem; font-weight: 800; color: var(--col-text-muted); }
+.header-nav a { padding: .68rem 1rem; border-radius: 8px; font-size: .94rem; font-weight: 800; color: var(--col-text-muted); }
 .header-nav a[aria-current="page"],
 .header-nav a:hover { background: var(--col-primary); color: #fff; }
 .mobile-menu { display: none; }
 .header-actions { display: flex; gap: .6rem; align-items: center; flex-shrink: 0; }
+.header-actions .btn-outline {
+  color: var(--col-primary);
+  border: 2px solid #fff;
+  background: rgba(255,255,255,.12);
+  box-shadow: none;
+}
+.header-actions .btn-outline:hover {
+  color: #fff;
+  border-color: #fff;
+  background: var(--col-primary);
+}
 
 .menu-hero {
   background:
@@ -331,10 +342,17 @@ function tr(value = "") {
   padding-block: 2rem 4rem;
 }
 .category-pills {
+  position: sticky;
+  top: 98px;
+  z-index: 90;
   display: flex;
   flex-wrap: wrap;
   gap: .75rem;
   margin-bottom: 2rem;
+  padding: .95rem 0;
+  background: rgba(255,250,244,.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(232,221,213,.85);
 }
 .category-pill {
   display: inline-flex;
@@ -342,7 +360,7 @@ function tr(value = "") {
   gap: .45rem;
   padding: .72rem 1.05rem;
   border: 1px solid #ecd9c8;
-  border-radius: 999px;
+  border-radius: 10px;
   background: #fff;
   color: var(--col-text);
   font-weight: 800;
@@ -356,7 +374,7 @@ function tr(value = "") {
 
 .menu-sections { display: grid; gap: 2rem; }
 .menu-category {
-  scroll-margin-top: 110px;
+  scroll-margin-top: 190px;
 }
 .menu-category-head {
   display: flex;
@@ -581,11 +599,11 @@ function tr(value = "") {
     min-width: 0;
     margin-left: 0;
     justify-content: flex-end;
-    gap: .15rem;
-    background: rgba(255,255,255,.82);
-    border: 1px solid rgba(255,255,255,.58);
-    border-radius: 999px;
-    padding: .2rem;
+    gap: .35rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -594,8 +612,8 @@ function tr(value = "") {
     flex: 0 0 auto;
     padding: .46rem .52rem;
     font-size: .72rem;
-    font-weight: 800;
-    color: var(--col-text);
+    font-weight: 900;
+    color: #173008;
   }
   .header-actions { display: none !important; }
   .mobile-menu summary {
@@ -627,6 +645,13 @@ function tr(value = "") {
     width: 96px;
     height: 42px;
   }
-  .header-nav a { font-size: .72rem; padding: .46rem .5rem; }
+  .header-nav a { font-size: .72rem; padding: .42rem .12rem; }
+  .category-pills {
+    top: 70px;
+    padding: .7rem 0;
+  }
+  .category-pill {
+    border-radius: 8px;
+  }
 }
 </style>
