@@ -1,7 +1,6 @@
 // src/data/menu.js
 // Ana sayfa urunleri ve fiyatlari merkezi olarak burada tutulur.
 export const HOME_MENU_PRICES = {
-  kucukDurum: 130,
   enfesDurum: 130,
   cigKofteTabak: 250,
   megaDurum: 160,
@@ -13,16 +12,6 @@ export const HOME_MENU_PRICES = {
 
 export const menu = [
   {
-    id: 1,
-    kategori: "Çiğ Köfte Dürüm",
-    ad: "Çiğ Köfte Dürüm (Küçük)",
-    fiyat: HOME_MENU_PRICES.kucukDurum,
-    aciklama: "İnce lavaş, taze çiğ köfte, limon ve nar ekşisi ile",
-    emoji: "🌯",
-    image: "/images/cigkofte-durum-1.jpg",
-    populer: false,
-  },
-  {
     id: 2,
     kategori: "Çiğ Köfte Dürüm",
     ad: "Enfes Dürüm",
@@ -30,7 +19,7 @@ export const menu = [
     fiyat: HOME_MENU_PRICES.enfesDurum,
     aciklama: "20\u20BA fark ile Doritos se\u00E7ene\u011Fi",
     emoji: "🌯",
-    image: "/images/cigkofte-durum-2.jpg",
+    image: "/images/menu/durum-normal-yeni.jpg",
     populer: true,
   },
   {
@@ -51,7 +40,7 @@ export const menu = [
     fiyat: HOME_MENU_PRICES.megaDurum,
     aciklama: "20\u20BA fark ile Doritos se\u00E7ene\u011Fi",
     emoji: "🌯",
-    image: "/images/cigkofte-durum-1.jpg",
+    image: "/images/menu/durum-normal-yeni.jpg",
     populer: true,
   },
   {
@@ -62,7 +51,7 @@ export const menu = [
     fiyat: HOME_MENU_PRICES.durumAyranMenu,
     aciklama: "Orta dürüm + soğuk ayran, tam bir öğün",
     emoji: "🥤",
-    image: "/images/cigkofte-durum-2.jpg",
+    image: "/images/menu/durum-normal-yeni.jpg",
     populer: true,
   },
   {
@@ -72,7 +61,7 @@ export const menu = [
     fiyat: HOME_MENU_PRICES.durumIcecekMenu,
     aciklama: "Büyük dürüm + seçtiğin içecek",
     emoji: "🥤",
-    image: "/images/cigkofte-durum-1.jpg",
+    image: "/images/menu/durum-normal-yeni.jpg",
     populer: false,
   },
   {
@@ -82,7 +71,7 @@ export const menu = [
     fiyat: HOME_MENU_PRICES.ikiliMenu,
     aciklama: "2x Büyük Dürüm + 2x İçecek, arkadaşına ısmarla",
     emoji: "👫",
-    image: "/images/cigkofte-durum-2.jpg",
+    image: "/images/menu/durum-normal-yeni.jpg",
     populer: false,
   },
   {
@@ -92,7 +81,7 @@ export const menu = [
     fiyat: HOME_MENU_PRICES.dortluMenu,
     aciklama: "4x Dürüm + 4x İçecek, grup siparişi için ideal",
     emoji: "🎉",
-    image: "/images/cigkofte-durum-1.jpg",
+    image: "/images/menu/durum-normal-yeni.jpg",
     populer: false,
   },
 ];

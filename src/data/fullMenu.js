@@ -10,7 +10,7 @@ export const menuCategories = [
       { name: "Enfes Durum (100 gr.)", price: "130 TL" },
       { name: "Ultra Durum (120 gr.)", price: "140 TL" },
       { name: "Mega Durum (150 gr.)", price: "160 TL" },
-      { name: "Double Durum", price: "180 TL" },
+      { name: "Double Durum (200 gr.)", price: "180 TL" },
       { name: "Doritoslu Enfes Durum", price: "150 TL" },
       { name: "Doritoslu Ultra Durum", price: "165 TL" },
       { name: "Doritoslu Mega Durum", price: "195 TL" },
