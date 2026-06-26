@@ -4,7 +4,7 @@ export const HOME_MENU_PRICES = {
   kucukDurum: 130,
   enfesDurum: 130,
   cigKofteTabak: 250,
-  megaDurum: 175,
+  megaDurum: 160,
   durumAyranMenu: 170,
   durumIcecekMenu: 180,
   ikiliMenu: 289,
