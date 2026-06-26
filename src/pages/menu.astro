@@ -215,6 +215,7 @@ function tr(value = "") {
                             <div>
                               <h4>{tr(item.name)}</h4>
                               {item.detail && <p>{tr(item.detail)}</p>}
+                              {item.doritosUpsell && <img class="doritos-upsell" src="/images/menu/doritos-20-farkla.png" alt="Doritoslu dürüm 20 TL farkla" loading="lazy" />}
                             </div>
                             <div class="product-footer">
                               <strong>{item.price}</strong>
@@ -234,6 +235,7 @@ function tr(value = "") {
                       <div>
                         <h3>{tr(item.name)}</h3>
                         {item.detail && <p>{tr(item.detail)}</p>}
+                        {item.doritosUpsell && <img class="doritos-upsell" src="/images/menu/doritos-20-farkla.png" alt="Doritoslu dürüm 20 TL farkla" loading="lazy" />}
                       </div>
                       <div class="product-footer">
                         <strong>{item.price}</strong>
@@ -454,6 +456,15 @@ function tr(value = "") {
 .menu-product-card p {
   color: var(--col-text-muted);
   font-size: .86rem;
+}
+.doritos-upsell {
+  width: 100%;
+  max-width: 150px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  display: block;
+  margin-top: .45rem;
+  border-radius: 8px;
 }
 .product-footer {
   display: flex;
