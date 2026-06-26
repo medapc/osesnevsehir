@@ -5,7 +5,7 @@ export const menuCategories = [
     id: "cig-kofte-durum",
     icon: "Wrap",
     title: "Cig Kofte Durum",
-    description: "Tekli, mega, ultra ve Doritoslu durum secenekleri",
+    description: "Enfes, ultra, mega, double ve Doritoslu dürüm çeşitlerimiz",
     items: [
       { name: "Enfes Durum (100 gr.)", price: "130 TL" },
       { name: "Ultra Durum (120 gr.)", price: "140 TL" },
