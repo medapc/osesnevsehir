@@ -7,7 +7,7 @@ const TEL_DISPLAY = "0384 215 2502";
 const ADDRESS = "2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13, 50100 Merkez/Nevşehir";
 const WA_URL = `https://wa.me/903842152502?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden bilgi almak istiyorum.")}`;
 const GOOGLE_BUSINESS_URL = "https://share.google/U463aknl3M19b6Wei";
-const MAP_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5183.830641011679!2d34.734146977334795!3d38.66805677177395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152a6ffc66d5e7ad%3A0xc3d624010fca8474!2zT3NlcyDDh2nEnyBLw7ZmdGUgTmV2xZ9laGlyIMOcbml2ZXJzaXRl!5e1!3m2!1str!2str!4v1782535613584!5m2!1str!2str";
+const MAP_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.1658299902083!2d34.7367219!3d38.6680568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152a6ffc66d5e7ad%3A0xc3d624010fca8474!2zT3NlcyDDh2nEnyBLw7ZmdGUgTmV2xZ9laGlyIMOcbml2ZXJzaXRl!5e0!3m2!1str!2str!4v1782535808068!5m2!1str!2str";
 
 const contactSchema = {
   "@context": "https://schema.org",
@@ -52,10 +52,10 @@ const contactSchema = {
             Nevşehir 2000 Evler'deki şubemiz her gün 11:00 - 02:00 arasında açık.
           </p>
         </div>
-        <div class="open-card">
+        <div class="open-card" id="business-status" aria-live="polite">
           <span class="open-dot" aria-hidden="true"></span>
           <div>
-            <strong>Şu anda açığız</strong>
+            <strong data-status-text>Durum kontrol ediliyor</strong>
             <span>Her gün 11:00 - 02:00</span>
           </div>
         </div>
@@ -148,6 +148,34 @@ const contactSchema = {
       <p>© {new Date().getFullYear()} Oses Çiğ Köfte Nevşehir</p>
     </div>
   </footer>
+
+  <script>
+    const updateBusinessStatus = () => {
+      const statusCard = document.querySelector("#business-status");
+      const statusText = statusCard?.querySelector("[data-status-text]");
+
+      if (!statusCard || !statusText) return;
+
+      const parts = new Intl.DateTimeFormat("tr-TR", {
+        timeZone: "Europe/Istanbul",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23",
+      }).formatToParts(new Date());
+
+      const hour = Number(parts.find((part) => part.type === "hour")?.value ?? 0);
+      const minute = Number(parts.find((part) => part.type === "minute")?.value ?? 0);
+      const currentMinutes = hour * 60 + minute;
+      const isOpen = currentMinutes >= 11 * 60 || currentMinutes < 2 * 60;
+
+      statusCard.classList.toggle("is-open", isOpen);
+      statusCard.classList.toggle("is-closed", !isOpen);
+      statusText.textContent = isOpen ? "Şu anda açığız" : "Şu anda kapalıyız";
+    };
+
+    updateBusinessStatus();
+    window.setInterval(updateBusinessStatus, 60_000);
+  </script>
 </BaseLayout>
 
 <style>
@@ -182,6 +210,8 @@ const contactSchema = {
   .open-card strong { font-size: .95rem; }
   .open-card span:last-child { color: #6b5b52; font-size: .82rem; }
   .open-dot { width: 12px; height: 12px; border-radius: 50%; background: #25d366; box-shadow: 0 0 0 6px rgba(37, 211, 102, .14); }
+  .open-card.is-closed { border-color: #eadfd5; }
+  .open-card.is-closed .open-dot { background: #e63312; box-shadow: 0 0 0 6px rgba(230, 51, 18, .12); }
 
   .contact-main { padding: 3.5rem 0 4.5rem; background: #fdfaf7; }
   .map-shell { overflow: hidden; background: #fff; border: 1px solid #e8ddd5; border-radius: 8px; box-shadow: 0 12px 38px rgba(55, 36, 20, .1); }
