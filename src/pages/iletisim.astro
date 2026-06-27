@@ -1,0 +1,266 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const TEL = "03842152502";
+const TEL_DISPLAY = "0384 215 2502";
+const ADDRESS = "2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13, 50100 Merkez/Nevşehir";
+const WA_URL = `https://wa.me/903842152502?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden bilgi almak istiyorum.")}`;
+const GOOGLE_BUSINESS_URL = "https://share.google/U463aknl3M19b6Wei";
+const MAP_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.6!2d34.724!3d38.624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM3JzI2LjQiTiAzNMKwNDMnMjYuNCJF!5e0!3m2!1str!2str!4v1";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  name: "Oses Çiğ Köfte Nevşehir Üniversite",
+  url: "https://osesnevsehir.com/iletisim",
+  telephone: "+903842152502",
+  priceRange: "$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "2000 Evler Mah. Şht. Musa Taşdemir Sk. No:13",
+    addressLocality: "Merkez",
+    addressRegion: "Nevşehir",
+    postalCode: "50100",
+    addressCountry: "TR",
+  },
+  openingHours: "Mo-Su 11:00-02:00",
+  sameAs: [
+    "https://www.instagram.com/osesnevsehir",
+    "https://www.facebook.com/profile.php?id=61566379798330",
+    GOOGLE_BUSINESS_URL,
+  ],
+};
+---
+
+<BaseLayout
+  title="İletişim | Oses Çiğ Köfte Nevşehir"
+  description="Oses Çiğ Köfte Nevşehir iletişim, adres, telefon, WhatsApp ve yol tarifi bilgileri. 2000 Evler'deki şubemize ulaşın."
+  canonical="https://osesnevsehir.com/iletisim"
+  schema={contactSchema}
+>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Oses Çiğ Köfte Ana Sayfa">
+        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte Nevşehir" />
+      </a>
+      <nav class="header-nav" aria-label="Ana menü">
+        <a href="/menu">Menü</a>
+        <a href="/kampanyalar">Kampanyalar</a>
+        <a href="/iletisim" aria-current="page">İletişim</a>
+      </nav>
+      <div class="header-actions">
+        <a href={`tel:${TEL}`} class="btn phone-button" data-gads-conversion="phone">☎ {TEL_DISPLAY}</a>
+        <a href={WA_URL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-hero">
+      <div class="container contact-hero-inner">
+        <div>
+          <p class="eyebrow">Bize Ulaşın</p>
+          <h1>Bir dürüm kadar yakınız.</h1>
+          <p class="hero-lead">
+            Sipariş, yol tarifi veya merak ettiğiniz her şey için bize ulaşın.
+            Nevşehir 2000 Evler'deki şubemiz her gün 11:00 - 02:00 arasında açık.
+          </p>
+        </div>
+        <div class="open-card">
+          <span class="open-dot" aria-hidden="true"></span>
+          <div>
+            <strong>Şu anda açığız</strong>
+            <span>Her gün 11:00 - 02:00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-main">
+      <div class="container">
+        <div class="map-shell">
+          <iframe
+            src={MAP_URL}
+            width="100%"
+            height="430"
+            style="border:0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Oses Çiğ Köfte Nevşehir konumu"
+          ></iframe>
+          <div class="map-caption">
+            <div>
+              <span>Oses Çiğ Köfte Nevşehir Üniversite</span>
+              <strong>{ADDRESS}</strong>
+            </div>
+            <a href={GOOGLE_BUSINESS_URL} target="_blank" rel="noopener">Yol Tarifi Al</a>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card">
+            <span class="contact-icon" aria-hidden="true">⌖</span>
+            <p class="card-label">Adres</p>
+            <h2>Şubemizi ziyaret edin</h2>
+            <p>{ADDRESS}</p>
+            <a href={GOOGLE_BUSINESS_URL} target="_blank" rel="noopener" class="text-link">Google Haritalar'da aç →</a>
+          </article>
+
+          <article class="contact-card">
+            <span class="contact-icon contact-icon--red" aria-hidden="true">☎</span>
+            <p class="card-label">Telefon</p>
+            <h2>Bizi hemen arayın</h2>
+            <p>Siparişiniz veya sorularınız için doğrudan şubemize ulaşın.</p>
+            <a href={`tel:${TEL}`} class="text-link" data-gads-conversion="phone">{TEL_DISPLAY} →</a>
+          </article>
+
+          <article class="contact-card">
+            <span class="contact-icon contact-icon--wa" aria-hidden="true">◉</span>
+            <p class="card-label">WhatsApp</p>
+            <h2>Mesajınızı bırakın</h2>
+            <p>Menü, fiyat ve sipariş bilgisi için WhatsApp üzerinden yazın.</p>
+            <a href={WA_URL} target="_blank" rel="noopener" class="text-link text-link--wa">WhatsApp'ta yaz →</a>
+          </article>
+
+          <article class="contact-card">
+            <span class="contact-icon contact-icon--google" aria-hidden="true">G</span>
+            <p class="card-label">Google İşletme</p>
+            <h2>Yorumları inceleyin</h2>
+            <p>4.8 puanlı Google işletme profilimizi ziyaret edin, yorumları okuyun veya deneyiminizi paylaşın.</p>
+            <a href={GOOGLE_BUSINESS_URL} target="_blank" rel="noopener" class="text-link">İşletme profilini aç →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-cta">
+      <div class="container contact-cta-inner">
+        <div>
+          <p class="eyebrow">Sipariş vermek için</p>
+          <h2>Telefon kadar yakın, WhatsApp kadar hızlıyız.</h2>
+        </div>
+        <div class="cta-actions">
+          <a href={`tel:${TEL}`} class="btn btn-call" data-gads-conversion="phone">Hemen Ara</a>
+          <a href={WA_URL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp'tan Yaz</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="contact-footer">
+    <div class="container footer-inner">
+      <a href="/" aria-label="Ana sayfa">
+        <img src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte" />
+      </a>
+      <nav aria-label="Footer sayfaları">
+        <a href="/">Anasayfa</a>
+        <a href="/menu">Menü</a>
+        <a href="/kampanyalar">Kampanyalar</a>
+        <a href="/hakkimizda">Hakkımızda & Sertifikalar</a>
+      </nav>
+      <p>© {new Date().getFullYear()} Oses Çiğ Köfte Nevşehir</p>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #8ec63f;
+    box-shadow: 0 2px 12px rgba(31, 57, 12, .12);
+  }
+  .header-inner { min-height: 92px; display: flex; align-items: center; gap: 1.35rem; }
+  .logo { display: flex; margin-right: auto; }
+  .site-logo-image { width: 180px; height: 76px; object-fit: contain; }
+  .header-nav { display: flex; align-items: center; gap: 1.6rem; }
+  .header-nav a { color: #173008; font-weight: 800; padding-block: .5rem; border-bottom: 2px solid transparent; }
+  .header-nav a:hover, .header-nav a[aria-current="page"] { color: #fff; border-color: #fff; }
+  .header-actions { display: flex; gap: .65rem; align-items: center; }
+  .phone-button { color: #fff; border: 2px solid #fff; background: transparent; }
+  .phone-button:hover { color: #173008; background: #fff; }
+
+  .contact-hero {
+    padding: 4.75rem 0 3.75rem;
+    background: linear-gradient(110deg, #fff9f1 0%, #fff0dc 62%, #eef8df 100%);
+    border-bottom: 1px solid #eadfd5;
+  }
+  .contact-hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3rem; align-items: end; }
+  .eyebrow { color: #e63312; font-size: .78rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .7rem; }
+  h1 { max-width: 760px; font-size: clamp(2.35rem, 5vw, 4.6rem); letter-spacing: 0; line-height: 1.02; }
+  .hero-lead { max-width: 710px; margin-top: 1.25rem; color: #6b5b52; font-size: 1.08rem; }
+  .open-card { display: flex; align-items: center; gap: .85rem; min-width: 235px; padding: 1rem 1.15rem; background: #fff; border: 1px solid #dfeaca; border-radius: 8px; box-shadow: 0 8px 28px rgba(74, 103, 36, .1); }
+  .open-card div { display: flex; flex-direction: column; }
+  .open-card strong { font-size: .95rem; }
+  .open-card span:last-child { color: #6b5b52; font-size: .82rem; }
+  .open-dot { width: 12px; height: 12px; border-radius: 50%; background: #25d366; box-shadow: 0 0 0 6px rgba(37, 211, 102, .14); }
+
+  .contact-main { padding: 3.5rem 0 4.5rem; background: #fdfaf7; }
+  .map-shell { overflow: hidden; background: #fff; border: 1px solid #e8ddd5; border-radius: 8px; box-shadow: 0 12px 38px rgba(55, 36, 20, .1); }
+  .map-shell iframe { display: block; }
+  .map-caption { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.15rem 1.3rem; border-top: 1px solid #e8ddd5; }
+  .map-caption div { display: flex; flex-direction: column; gap: .2rem; }
+  .map-caption span { color: #e63312; font-size: .76rem; font-weight: 900; text-transform: uppercase; }
+  .map-caption strong { font-size: .92rem; }
+  .map-caption a { flex-shrink: 0; padding: .7rem 1rem; border-radius: 7px; background: #e63312; color: #fff; font-weight: 800; }
+  .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+  .contact-card { min-height: 260px; padding: 1.5rem; background: #fff; border: 1px solid #e8ddd5; border-radius: 8px; transition: transform .2s ease, box-shadow .2s ease; }
+  .contact-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(55, 36, 20, .09); }
+  .contact-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 1.3rem; border-radius: 7px; background: #8ec63f; color: #fff; font-size: 1.25rem; font-weight: 900; }
+  .contact-icon--red { background: #e63312; }
+  .contact-icon--wa { background: #25d366; }
+  .contact-icon--google { background: #fff; color: #4285f4; border: 1px solid #dadce0; }
+  .card-label { color: #9c8275; font-size: .72rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+  .contact-card h2 { margin: .35rem 0 .65rem; font-size: 1.25rem; }
+  .contact-card > p:not(.card-label) { color: #6b5b52; max-width: 440px; }
+  .text-link { display: inline-block; margin-top: 1rem; color: #e63312; font-weight: 900; }
+  .text-link--wa { color: #159947; }
+
+  .contact-cta { padding: 3rem 0; background: #17100c; color: #fff; }
+  .contact-cta-inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .contact-cta h2 { max-width: 620px; font-size: clamp(1.45rem, 3vw, 2.25rem); }
+  .cta-actions { display: flex; gap: .75rem; flex-shrink: 0; }
+  .btn-call { background: #e63312; color: #fff; }
+  .contact-footer { padding: 1.5rem 0; background: #0f0b08; color: #bcaea5; }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .footer-inner img { width: 92px; height: 54px; object-fit: contain; }
+  .footer-inner nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  .footer-inner nav a { color: #fff; font-size: .82rem; font-weight: 700; }
+  .footer-inner p { font-size: .78rem; }
+
+  @media (max-width: 820px) {
+    .header-inner { min-height: 78px; gap: .75rem; }
+    .site-logo-image { width: 124px; height: 62px; }
+    .header-nav { gap: .75rem; }
+    .header-nav a { font-size: .77rem; }
+    .header-actions { display: none; }
+    .contact-hero { padding: 3.2rem 0 2.7rem; text-align: center; }
+    .contact-hero-inner { grid-template-columns: 1fr; gap: 1.5rem; justify-items: center; }
+    h1 { font-size: clamp(2.2rem, 11vw, 3.35rem); }
+    .hero-lead { font-size: .98rem; }
+    .contact-main { padding: 1.25rem 0 3rem; }
+    .map-shell iframe { height: 330px; }
+    .map-caption { align-items: flex-start; flex-direction: column; }
+    .map-caption a { width: 100%; text-align: center; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-card { min-height: 0; }
+    .contact-cta-inner, .footer-inner { flex-direction: column; text-align: center; }
+    .cta-actions { width: 100%; }
+    .cta-actions .btn { flex: 1; justify-content: center; }
+  }
+
+  @media (max-width: 430px) {
+    .container { padding-inline: 1rem; }
+    .header-inner { justify-content: space-between; }
+    .logo { margin-right: 0; }
+    .site-logo-image { width: 112px; }
+    .header-nav { gap: .58rem; }
+    .header-nav a { font-size: .7rem; }
+    .contact-hero { padding-top: 2.6rem; }
+    .map-shell iframe { height: 280px; }
+    .cta-actions { flex-direction: column; }
+    .footer-inner nav { gap: .7rem; }
+  }
+</style>
