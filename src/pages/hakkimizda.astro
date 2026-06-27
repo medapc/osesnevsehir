@@ -3,6 +3,7 @@
 // Hakkımızda & Sertifikalar Galerisi
 
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 
 const TEL = "03842152502";
 const TEL_DISPLAY = "0384 215 2502";
@@ -60,33 +61,7 @@ const sertifikalar = [
   canonical="https://osesnevsehir.com/hakkimizda"
 >
 
-  <!-- ── Basit Header ── -->
-  <header class="mini-header">
-    <div class="container mini-header-inner">
-      <a href="/" class="logo" aria-label="Ana Sayfa">
-        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte" />
-      </a>
-      <details class="mobile-menu">
-        <summary aria-label="Menüyü aç">
-          <span></span>
-          <span></span>
-          <span></span>
-        </summary>
-        <nav aria-label="Mobil menü">
-          <a href="/">Anasayfa</a>
-          <a href="/menu">Menü</a>
-          <a href="/kampanyalar">Kampanyalar</a>
-          <a href="/iletisim">İletişim</a>
-        </nav>
-      </details>
-      <nav class="mini-nav">
-        <a href="/" class="nav-link">Anasayfa</a>
-        <a href="/menu" class="nav-link">Menü</a>
-        <a href="/kampanyalar" class="nav-link">Kampanyalar</a>
-        <a href="/iletisim" class="nav-link">İletişim</a>
-      </nav>
-    </div>
-  </header>
+  <SiteHeader />
 
   <!-- ── Hero: Hakkımızda ── -->
   <section class="about-hero">

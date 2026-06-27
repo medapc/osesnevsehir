@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 import { flatMenuItemCount, menuCategories } from "../data/fullMenu.js";
 
 const TEL = "03842152502";
@@ -136,36 +137,7 @@ function tr(value = "") {
   description="Oses Çiğ Köfte Nevşehir Üniversite güncel menüsü: çiğ köfte dürümler, fırsat menüleri, tatlılar, dondurmalar, soslar ve içecekler."
   canonical="https://osesnevsehir.com/menu"
 >
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Oses Çiğ Köfte Ana Sayfa">
-        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte Nevşehir" />
-      </a>
-      <details class="mobile-menu">
-        <summary aria-label="Menüyü aç">
-          <span></span>
-          <span></span>
-          <span></span>
-        </summary>
-        <nav aria-label="Mobil menü">
-          <a href="/">Anasayfa</a>
-          <a href="/menu">Menü</a>
-          <a href="/kampanyalar">Kampanyalar</a>
-          <a href="/iletisim">İletişim</a>
-        </nav>
-      </details>
-      <nav class="header-nav" aria-label="Ana menü">
-        <a href="/">Anasayfa</a>
-        <a href="/menu" aria-current="page">Menü</a>
-        <a href="/kampanyalar">Kampanyalar</a>
-        <a href="/iletisim">İletişim</a>
-      </nav>
-      <div class="header-actions">
-        <a href={`tel:${TEL}`} class="btn btn-outline hide-mobile" data-gads-conversion="phone">☎ {TEL_DISPLAY}</a>
-        <a href={WA_GENEL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
-      </div>
-    </div>
-  </header>
+  <SiteHeader active="menu" />
 
   <main>
     <section class="menu-hero">

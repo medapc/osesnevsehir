@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 
 const TEL = "03842152502";
 const TEL_DISPLAY = "0384 215 2502";
@@ -38,22 +39,7 @@ const contactSchema = {
   canonical="https://osesnevsehir.com/iletisim"
   schema={contactSchema}
 >
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="/" class="logo" aria-label="Oses Çiğ Köfte Ana Sayfa">
-        <img class="site-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte Nevşehir" />
-      </a>
-      <nav class="header-nav" aria-label="Ana menü">
-        <a href="/menu">Menü</a>
-        <a href="/kampanyalar">Kampanyalar</a>
-        <a href="/iletisim" aria-current="page">İletişim</a>
-      </nav>
-      <div class="header-actions">
-        <a href={`tel:${TEL}`} class="btn phone-button" data-gads-conversion="phone">☎ {TEL_DISPLAY}</a>
-        <a href={WA_URL} target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
-      </div>
-    </div>
-  </header>
+  <SiteHeader active="contact" />
 
   <main>
     <section class="contact-hero">

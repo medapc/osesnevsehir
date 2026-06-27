@@ -1,0 +1,124 @@
+---
+interface Props {
+  active?: "home" | "menu" | "campaigns" | "contact";
+}
+
+const { active } = Astro.props;
+const TEL = "03842152502";
+const TEL_DISPLAY = "0384 215 2502";
+const WA_URL = `https://wa.me/903842152502?text=${encodeURIComponent("Merhaba, osesnevsehir.com üzerinden sipariş vermek istiyorum.")}`;
+---
+
+<header class="standard-header">
+  <div class="container standard-header-inner">
+    <a href="/" class="standard-logo" aria-label="Oses Çiğ Köfte Ana Sayfa">
+      <img class="standard-logo-image" src="/images/oses-logo.jpg" alt="Oses Çiğ Köfte Nevşehir" />
+    </a>
+    <nav class="standard-nav" aria-label="Ana menü">
+      <a href="/" aria-current={active === "home" ? "page" : undefined}>Anasayfa</a>
+      <a href="/menu" aria-current={active === "menu" ? "page" : undefined}>Menü</a>
+      <a href="/kampanyalar" aria-current={active === "campaigns" ? "page" : undefined}>Kampanyalar</a>
+      <a href="/iletisim" aria-current={active === "contact" ? "page" : undefined}>İletişim</a>
+    </nav>
+    <div class="standard-actions">
+      <a href={`tel:${TEL}`} class="standard-phone" data-gads-conversion="phone">☎ {TEL_DISPLAY}</a>
+      <a href={WA_URL} target="_blank" rel="noopener" class="standard-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.851L.057 23.427a.5.5 0 0 0 .609.637l5.77-1.511A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.003-1.373l-.359-.213-3.724.976.993-3.622-.234-.372A9.797 9.797 0 0 1 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .standard-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding-block: .35rem;
+    background: #8ec63f;
+    border-bottom: 1px solid rgba(142, 198, 63, .32);
+    box-shadow: var(--shadow-sm);
+  }
+  .standard-header-inner { display: flex; align-items: center; gap: 1.25rem; min-height: 84px; }
+  .standard-logo { display: flex; align-items: center; flex-shrink: 0; }
+  .standard-logo-image { width: 208px; height: 84px; object-fit: contain; border-radius: 8px; }
+  .standard-nav {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    margin-left: auto;
+    padding: .28rem;
+    background: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(255, 255, 255, .72);
+    border-radius: 10px;
+  }
+  .standard-nav a {
+    padding: .68rem 1rem;
+    border-radius: 8px;
+    color: var(--col-text-muted);
+    font-size: .94rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .standard-nav a[aria-current="page"],
+  .standard-nav a:hover { color: #fff; background: var(--col-primary); }
+  .standard-actions { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
+  .standard-phone,
+  .standard-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    min-height: 44px;
+    padding: .75rem 1.25rem;
+    border-radius: 10px;
+    font-size: .95rem;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .standard-phone { color: var(--col-primary); border: 2px solid #fff; background: rgba(255, 255, 255, .12); }
+  .standard-phone:hover { color: #fff; background: var(--col-primary); }
+  .standard-whatsapp { color: #fff; background: var(--col-wa); box-shadow: var(--shadow-wa); }
+  .standard-whatsapp:hover { background: var(--col-wa-dark); transform: translateY(-1px); }
+
+  @media (max-width: 900px) {
+    .standard-actions { display: none; }
+  }
+  @media (max-width: 768px) {
+    .standard-header { padding-block: .7rem; }
+    .standard-header-inner { min-height: 52px; gap: .55rem; }
+    .standard-logo-image { width: 110px; height: 46px; border-radius: 0; }
+    .standard-nav {
+      flex: 1;
+      min-width: 0;
+      justify-content: flex-end;
+      gap: .35rem;
+      margin-left: 0;
+      padding: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+    }
+    .standard-nav::-webkit-scrollbar { display: none; }
+    .standard-nav a {
+      flex: 0 0 auto;
+      padding: .46rem .3rem;
+      border-radius: 5px;
+      color: #173008;
+      font-size: .72rem;
+      font-weight: 900;
+    }
+  }
+  @media (max-width: 480px) {
+    .standard-logo-image { width: 96px; height: 42px; }
+    .standard-nav { gap: .22rem; }
+    .standard-nav a { padding: .42rem .12rem; font-size: .7rem; }
+  }
+</style>
